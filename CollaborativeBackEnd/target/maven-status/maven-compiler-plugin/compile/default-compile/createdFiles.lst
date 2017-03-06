@@ -1,0 +1,13 @@
+com\niit\collaborativebackend\dao\BlogDAO.class
+com\niit\collaborativebackend\model\Blog.class
+com\niit\collaborativebackend\dao\BlogDAOImpl.class
+com\niit\collaborativebackend\model\Job.class
+com\niit\collaborativebackend\dao\JobDAO.class
+com\niit\collaborativebackend\dao\UserDAOImpl.class
+com\niit\collaborativebackend\model\BaseDomain.class
+com\niit\collaborativebackend\model\ChatForumComment.class
+com\niit\collaborativebackend\dao\UserDAO.class
+com\niit\collaborativebackend\model\Friend.class
+com\niit\collaborativebackend\model\JobApplication.class
+com\niit\collaborativebackend\config\ApplicationContextConfig.class
+com\niit\collaborativebackend\model\User.class

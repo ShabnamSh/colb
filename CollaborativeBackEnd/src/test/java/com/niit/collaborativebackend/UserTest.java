@@ -18,11 +18,11 @@ public class UserTest {
 	   UserDAO userDao = 	(UserDAO) context.getBean("userDao");
 	   
 	   User user = 	(User) context.getBean("user");
-       user.setId("US101");
+       user.setUserid("US103");
        user.setMobile("90876445");
-       user.setEmail("sfhh@gmail.com");
+       user.setEmail("sfhhnm@gmail.com");
        user.setAddress("kolkata");
-       user.setIs_online('n');
+       user.setIs_online('y');
        user.setName("Shabnam");
        user.setPassword("kol1234");
        user.setReason("u r student");

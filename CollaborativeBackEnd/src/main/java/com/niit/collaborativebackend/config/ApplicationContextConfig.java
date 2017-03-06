@@ -1,6 +1,6 @@
 package com.niit.collaborativebackend.config;
 
-import java.sql.DriverManager;
+
 import java.util.Properties;
 
 import javax.sql.DataSource;
@@ -15,8 +15,12 @@ import org.springframework.orm.hibernate4.HibernateTransactionManager;
 import org.springframework.orm.hibernate4.LocalSessionFactoryBuilder;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+import com.niit.collaborativebackend.dao.BlogDAO;
+import com.niit.collaborativebackend.dao.BlogDAOImpl;
 import com.niit.collaborativebackend.dao.UserDAO;
 import com.niit.collaborativebackend.dao.UserDAOImpl;
+import com.niit.collaborativebackend.model.Blog;
+
 import com.niit.collaborativebackend.model.User;
 @Configuration
 @ComponentScan("com.niit.collaborativebackend")
@@ -27,8 +31,8 @@ public class ApplicationContextConfig {
 		public DataSource getDataSource(){
 		DriverManagerDataSource dataSource=new DriverManagerDataSource();
 		    dataSource.setDriverClassName("oracle.jdbc.driver.OracleDriver");
-			dataSource.setUrl("jdbc:oracle:thin:@localhost:1521:xe");
-			dataSource.setUsername("CLOBDB");
+			dataSource.setUrl("jdbc:oracle:thin:@localhost:1521/XE");
+			dataSource.setUsername("COLBDB");
 			dataSource.setPassword("root");
 			return dataSource;
 		}
@@ -46,7 +50,8 @@ public class ApplicationContextConfig {
 			LocalSessionFactoryBuilder sessionBuilder=new LocalSessionFactoryBuilder(dataSource);
 			sessionBuilder.addProperties(getHibernateProperties());
 			sessionBuilder.addAnnotatedClass(User.class);
-			
+			sessionBuilder.addAnnotatedClass(Blog.class);
+			/*sessionBuilder.addAnnotatedClass(Friend.class);*/
 		
 			
 		
@@ -65,6 +70,11 @@ public class ApplicationContextConfig {
 		@Bean(name="userDao")
 		public UserDAO getUserDetails(SessionFactory sessionFactory){
 			return new UserDAOImpl(sessionFactory);
+		}
+		@Autowired
+		@Bean(name="blogDao")
+		public BlogDAO getBlogDetails(SessionFactory sessionFactory){
+			return new BlogDAOImpl(sessionFactory);
 		}
 	}	
 
