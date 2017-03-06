@@ -8,9 +8,18 @@
  <link rel="stylesheet" type="text/css" href="default.css" />
 
 <body>
-<div ng-include="'c_common/header.html'"></div>
-<br>
-<div ng-view></div>
+
+		<div ng-show="currentUser.role=='admin'" ng-include="'c_common/adminheader.html'">
+			
+		</div>
+		
+	
+
+
+	<div ng-show="currentUser.role!='admin'"  ng-include="'c_common/header.html'">
+	</div>
+
+	<div ng-view></div>
 	
  	  
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
@@ -22,5 +31,6 @@
     <script src="app.js"></script>
     <script src="c_user/UserController.js"></script>
     <script src="c_user/UserService.js"></script>
+    <script type="text/javascript" src="resources/js/main.js"></script>
 </body>
 </html>

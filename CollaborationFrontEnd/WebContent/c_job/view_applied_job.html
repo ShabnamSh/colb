@@ -1,0 +1,44 @@
+
+   
+
+    <div ng-controller="JobController as ctrl">
+        <div class="container">
+
+            <div class="row">
+                
+                <div class="col-md-10">
+
+                    <div class="table-responsive custom-bg-inset">
+                        <table class="table" ng-init="ctrl.getMyAppliedJobs()">
+                            <thead>
+                                <tr>
+                                    <th>JobID</th>                                    
+                                    <th>Date Applied</th>
+                                    <th>Status</th>    
+                                    <th>Reason</th>                               
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="jobapplication in ctrl.jobs">
+                                    <td><a href="#/job-detail" ng-click="getJobDetails(jobapplication.jobid)">{{jobapplication.jobid}}</a></td>
+                                    <td>{{jobapplication.appliedjob}}</td>
+                                    <td>{{jobapplication.status}}</td> 
+                                    <td>
+                                    <p ng-show="jobapplication.status=='S' || jobapplication.status=='C' || jobapplication.status=='R'">
+                                    {{jobapplication.reason}}
+                                    </p>
+                                    </td>
+                                </tr>                               
+                            </tbody>
+                        </table>
+                        
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+   

@@ -17,10 +17,10 @@ app.config(function($routeProvider){
 		templateUrl : 'c_user/register.html',
 		controller : 'UserController'
 	})
-	.when('/logout', {
-		templateUrl : 'c_home/home.html',
-		controller : 'UserController'
+	.when('/homme',{
+		templateUrl:'c_home/homme.html'
 	})
+	
 	.otherwise({
 		redirectTo : '/'
 	});
@@ -29,11 +29,12 @@ app.config(function($routeProvider){
 app.run(function($rootScope,$location,$cookieStore,$http){
 
 	 $rootScope.$on('$locationChangeStart', function (event, next, current) {
+		 
 		 console.log("$locationChangeStart")
 		 //http://localhost:8080/Collaboration/addjob
 	        // redirect to login page if not logged in and trying to access a restricted page
 	     
-		 var userPages = ['/myProfile','/create_blog','/add_friend','/search_friend','/view_friend', '/viewFriendRequest','/chat','/register','/search','/logout']
+		 var userPages = ['/myProfile','/create_blog','/add_friend','/search_friend','/homme','/view_friend', '/viewFriendRequest','/chat','/search']
 		 var adminPages = ["/post_job","/manage_users"]
 		 
 		 var currentPage = $location.path()
@@ -67,7 +68,7 @@ app.run(function($rootScope,$location,$cookieStore,$http){
 					 {
 					 
 					  alert("You can not do this operation as you are logged as : " + role )
-					   $location.path('/login');
+					   $location.path('/homme');
 					 
 					 }
 				     
