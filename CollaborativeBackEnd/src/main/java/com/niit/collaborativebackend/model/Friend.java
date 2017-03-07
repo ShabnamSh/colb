@@ -2,6 +2,7 @@ package com.niit.collaborativebackend.model;
 
 import java.util.Set;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -29,14 +30,16 @@ public class Friend extends BaseDomain {
 	private String friendid;
 	@NotNull
 	private String status;
-	@JsonIgnore
+	@Column(name="is_online")
+	private char  isOnline;
+	/*@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name="userid",nullable=false,insertable=false,updatable=false)
 	private User user;
 	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name="friendid",nullable=false,insertable=false,updatable=false)
-	private User friend;
+	private User friend;*/
 	public int getId() {
 		return id;
 	}
@@ -61,18 +64,7 @@ public class Friend extends BaseDomain {
 	public void setStatus(String status) {
 		this.status = status;
 	}
-	public User getUser() {
-		return user;
-	}
-	public void setUser(User user) {
-		this.user = user;
-	}
-	public User getFriend() {
-		return friend;
-	}
-	public void setFriend(User friend) {
-		this.friend = friend;
-	}
+	
 	
 
 }

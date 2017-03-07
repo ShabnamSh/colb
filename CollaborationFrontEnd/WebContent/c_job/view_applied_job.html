@@ -21,7 +21,7 @@
                             <tbody>
                                 <tr ng-repeat="jobapplication in ctrl.jobs">
                                     <td><a href="#/job-detail" ng-click="getJobDetails(jobapplication.jobid)">{{jobapplication.jobid}}</a></td>
-                                    <td>{{jobapplication.appliedjob}}</td>
+                                    <td>{{jobapplication.applieddate}}</td>
                                     <td>{{jobapplication.status}}</td> 
                                     <td>
                                     <p ng-show="jobapplication.status=='S' || jobapplication.status=='C' || jobapplication.status=='R'">
