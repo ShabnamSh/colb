@@ -7,7 +7,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
 
-public class JobApplication {
+public class JobApplication extends BaseDomain {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int id;
@@ -16,11 +16,11 @@ public class JobApplication {
 	private int jobid;
 	
 	@NotNull
-	private String email;
+	private String userid;
 	
 	@NotNull
 	private String status;
-	
+	private String remarks;
 	@NotNull
 	private String reason;
 
@@ -43,12 +43,14 @@ public class JobApplication {
 		this.jobid = jobid;
 	}
 
-	public String getEmail() {
-		return email;
+	
+
+	public String getUserid() {
+		return userid;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
+	public void setUserid(String userid) {
+		this.userid = userid;
 	}
 
 	public String getStatus() {
@@ -73,6 +75,14 @@ public class JobApplication {
 
 	public void setApplieddate(Date applieddate) {
 		this.applieddate = applieddate;
+	}
+
+	public String getRemarks() {
+		return remarks;
+	}
+
+	public void setRemarks(String remarks) {
+		this.remarks = remarks;
 	} 
 	
 

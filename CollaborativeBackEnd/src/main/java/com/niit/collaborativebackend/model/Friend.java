@@ -32,14 +32,14 @@ public class Friend extends BaseDomain {
 	private String status;
 	@Column(name="is_online")
 	private char  isOnline;
-	/*@JsonIgnore
-	@ManyToOne
-	@JoinColumn(name="userid",nullable=false,insertable=false,updatable=false)
-	private User user;
-	@JsonIgnore
-	@ManyToOne
-	@JoinColumn(name="friendid",nullable=false,insertable=false,updatable=false)
-	private User friend;*/
+	
+	public char getIsOnline() {
+		return isOnline;
+	}
+	public void setIsOnline(char isOnline) {
+		this.isOnline = isOnline;
+	}
+	
 	public int getId() {
 		return id;
 	}
