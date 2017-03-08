@@ -1,9 +1,19 @@
 
-
+<div ng-controller="UserController as ctrl">
+<br>
+<br>
+	<div class ="nav navbar-nav-navbar-left" ng-show="currentUser.userid==''"> Welcome:{{currentUser.name}}|<a href="#" ng-click="ctrl.logout">Logout</a></div>
+			
+		
+		
+	
+		<div class="nav navbar-nav-navbar-right"><a href="#" ng-click="ctrl.myProfile()">My Profile</a>
+		</div>
+		</div>
    <section>
    
         <div class="container">
-
+You logged in as a ::{{currentUser.role}}
           
                 <div class="col-md-10">
 
@@ -137,4 +147,4 @@ The ng-bind directive binds application data to the HTML view.
         </div>
  
 </section>
-  
+  </div>

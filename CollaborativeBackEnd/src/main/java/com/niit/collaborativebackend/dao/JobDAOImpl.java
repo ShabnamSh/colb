@@ -36,7 +36,7 @@ public class JobDAOImpl  implements JobDAO{
 	public JobApplication getJobApplication(String userid, int jobid) {
 		// TODO Auto-generated method stub
 		log.debug("Starting of the method getJobApplication");
-		String hql = "from JobApplication where userID ='"+ userid + "' and jobID='"+jobid + "'";
+		String hql = "from JobApplication where userid ='"+ userid + "' and jobid='"+jobid + "'";
 		log.debug("hql" + hql);
 		return (JobApplication) sessionFactory.getCurrentSession().createQuery(hql).uniqueResult();
 	}
@@ -101,7 +101,7 @@ public class JobDAOImpl  implements JobDAO{
 	public List<Job> getMyAppliedJobs(String userid) {
 		// TODO Auto-generated method stub
 		log.debug("Starting of method getMyAppliedJobs");
-		String hql = "from JobApplication where userID ='"+ userid +"'";
+		String hql = "from JobApplication where userid='"+ userid +"'";
 		Query query = sessionFactory.getCurrentSession().createQuery(hql);
 		log.debug("Ending of method getMyAppliedJobs");
 		return query.list();

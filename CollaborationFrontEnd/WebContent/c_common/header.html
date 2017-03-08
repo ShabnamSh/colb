@@ -177,7 +177,8 @@
     </style>
 
 </head>
-<body>
+<body >
+<section  ng-controller="UserController as ctrl">
 <nav class="navbar navbar-inverse sidebar" role="navigation">
     <div class="container-fluid">
 		<!-- Brand and toggle get grouped for better mobile display -->
@@ -241,13 +242,14 @@
             <li>
               <p class="navbar-text">Already have an account?</p>
             </li>
-            <li  ><a href="#/login">Login<span style="font-size:16px;" class=" glyphicon glyphicon-log-in"></span></a></li>
-			
+            <li ng-hide="currentUser.userid" ><a href="#/login">Login<span style="font-size:16px;" class=" glyphicon glyphicon-log-in"></span></a></li>
+			 <li ng-show="currentUser.userid" ><a href="#/"ng-click="ctrl.logout()">Logout<span style="font-size:16px;" class=" glyphicon glyphicon-log-in"></span></a></li>
 			</ul>	
 
 </div>
 </div>
 </nav>
+</section>
 <!-- <script type="text/javascript">
     function htmlbodyHeightUpdate(){
 		var height3 = $( window ).height()

@@ -9,12 +9,11 @@
 
 <body>
 
-		<div ng-show="currentUser.role=='admin'" ng-include="'c_common/adminheader.html'">
+	
+	
+<div ng-show="currentUser.role=='admin'" ng-include="'c_common/adminheader.html'">
 			
 		</div>
-		
-	
-
 
 	<div ng-show="currentUser.role!='admin'"  ng-include="'c_common/header.html'">
 	</div>

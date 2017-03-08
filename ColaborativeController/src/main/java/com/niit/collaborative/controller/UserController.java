@@ -105,8 +105,8 @@ public class UserController {
 		return new ResponseEntity<User>(user, HttpStatus.OK);
 	}
 	//Admin should able to make one of the employee as admin
-		@PutMapping("/makeAdmin/{id}")
-		public ResponseEntity<User> makeAdmin(@PathVariable("id") String empID) {
+		@PutMapping("/makeAdmin/{userid}")
+		public ResponseEntity<User> makeAdmin(@PathVariable("userid") String empID) {
 
 			log.debug("calling the method makeAdmin");
 			log.debug("with the id :" + empID);
@@ -156,8 +156,8 @@ public class UserController {
 			return new ResponseEntity<User>(user, HttpStatus.OK);
 		}
 		
-		@GetMapping(value = "/user/{id}")
-		public ResponseEntity<User> getUser(@PathVariable("id") String id) {
+		@GetMapping(value = "/user/{userid}")
+		public ResponseEntity<User> getUser(@PathVariable("userid") String id) {
 			log.debug("calling method getUser");
 			log.debug("id" + id);
 			User user = userDao.get(id);
@@ -174,8 +174,8 @@ public class UserController {
 		}
 
 		
-		@GetMapping(value = "/accept/{id}")
-		public ResponseEntity<User> accept(@PathVariable("id") String id) {
+		@GetMapping(value = "/accept/{userid}")
+		public ResponseEntity<User> accept(@PathVariable("userid") String id) {
 			log.debug("Starting of the method accept");
 
 			user = updateStatus(id, 'A', "");
@@ -184,8 +184,8 @@ public class UserController {
 
 		}
 
-		@GetMapping(value = "/reject/{id}/{reason}")
-		public ResponseEntity<User> reject(@PathVariable("id") String id, @PathVariable("reason") String reason) {
+		@GetMapping(value = "/reject/{userid}/{reason}")
+		public ResponseEntity<User> reject(@PathVariable("userid") String id, @PathVariable("reason") String reason) {
 			log.debug("Starting of the method reject");
 
 			user = updateStatus(id, 'R', reason);
@@ -194,11 +194,11 @@ public class UserController {
 
 		}
 
-		private User updateStatus(String id, char status, String reason) {
+		private User updateStatus(String userid, char status, String reason) {
 			log.debug("Starting of the method updateStatus");
 
 			log.debug("status: " + status);
-			user = userDao.get(id);
+			user = userDao.get(userid);
 
 			if (user == null) {
 				user = new User();

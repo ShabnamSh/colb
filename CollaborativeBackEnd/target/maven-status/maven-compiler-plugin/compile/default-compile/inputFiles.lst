@@ -2,6 +2,8 @@ D:\ColaborationProject\CollaborativeBackEnd\src\main\java\com\niit\collaborative
 D:\ColaborationProject\CollaborativeBackEnd\src\main\java\com\niit\collaborativebackend\config\ApplicationContextConfig.java
 D:\ColaborationProject\CollaborativeBackEnd\src\main\java\com\niit\collaborativebackend\model\Blog.java
 D:\ColaborationProject\CollaborativeBackEnd\src\main\java\com\niit\collaborativebackend\dao\UserDAO.java
+D:\ColaborationProject\CollaborativeBackEnd\src\main\java\com\niit\collaborativebackend\dao\JobDAOImpl.java
+D:\ColaborationProject\CollaborativeBackEnd\src\main\java\com\niit\collaborativebackend\dao\FriendDAO.java
 D:\ColaborationProject\CollaborativeBackEnd\src\main\java\com\niit\collaborativebackend\model\JobApplication.java
 D:\ColaborationProject\CollaborativeBackEnd\src\main\java\com\niit\collaborativebackend\dao\BlogDAOImpl.java
 D:\ColaborationProject\CollaborativeBackEnd\src\main\java\com\niit\collaborativebackend\model\Friend.java
@@ -10,4 +12,5 @@ D:\ColaborationProject\CollaborativeBackEnd\src\main\java\com\niit\collaborative
 D:\ColaborationProject\CollaborativeBackEnd\src\main\java\com\niit\collaborativebackend\model\ChatForumComment.java
 D:\ColaborationProject\CollaborativeBackEnd\src\main\java\com\niit\collaborativebackend\model\User.java
 D:\ColaborationProject\CollaborativeBackEnd\src\main\java\com\niit\collaborativebackend\model\BaseDomain.java
+D:\ColaborationProject\CollaborativeBackEnd\src\main\java\com\niit\collaborativebackend\dao\FriendDAOImpl.java
 D:\ColaborationProject\CollaborativeBackEnd\src\main\java\com\niit\collaborativebackend\dao\BlogDAO.java

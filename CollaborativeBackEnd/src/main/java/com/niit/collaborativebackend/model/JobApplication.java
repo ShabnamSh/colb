@@ -2,11 +2,19 @@ package com.niit.collaborativebackend.model;
 
 import java.sql.Date;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import org.springframework.stereotype.Component;
+
+
+@Entity
+@Table
+@Component
 public class JobApplication extends BaseDomain {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)

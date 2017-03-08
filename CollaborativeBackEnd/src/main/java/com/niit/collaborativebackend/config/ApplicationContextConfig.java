@@ -20,7 +20,9 @@ import com.niit.collaborativebackend.dao.BlogDAOImpl;
 import com.niit.collaborativebackend.dao.UserDAO;
 import com.niit.collaborativebackend.dao.UserDAOImpl;
 import com.niit.collaborativebackend.model.Blog;
-
+import com.niit.collaborativebackend.model.Friend;
+import com.niit.collaborativebackend.model.Job;
+import com.niit.collaborativebackend.model.JobApplication;
 import com.niit.collaborativebackend.model.User;
 @Configuration
 @ComponentScan("com.niit.collaborativebackend")
@@ -51,7 +53,9 @@ public class ApplicationContextConfig {
 			sessionBuilder.addProperties(getHibernateProperties());
 			sessionBuilder.addAnnotatedClass(User.class);
 			sessionBuilder.addAnnotatedClass(Blog.class);
-			/*sessionBuilder.addAnnotatedClass(Friend.class);*/
+			sessionBuilder.addAnnotatedClass(Friend.class);
+			sessionBuilder.addAnnotatedClass(Job.class);
+			sessionBuilder.addAnnotatedClass(JobApplication.class);
 		
 			
 		
@@ -71,11 +75,11 @@ public class ApplicationContextConfig {
 		public UserDAO getUserDetails(SessionFactory sessionFactory){
 			return new UserDAOImpl(sessionFactory);
 		}
-		@Autowired
+		/*@Autowired
 		@Bean(name="blogDao")
 		public BlogDAO getBlogDetails(SessionFactory sessionFactory){
 			return new BlogDAOImpl(sessionFactory);
-		}
+		}*/
 	}	
 
 

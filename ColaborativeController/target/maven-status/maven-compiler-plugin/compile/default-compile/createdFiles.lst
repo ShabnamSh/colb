@@ -2,4 +2,5 @@ com\niit\collaborative\config\WebAppInitializer.class
 com\niit\collaborative\controller\FriendController.class
 com\niit\collaborative\config\WebConfig.class
 com\niit\collaborative\controller\BlogController.class
+com\niit\collaborative\controller\JobController.class
 com\niit\collaborative\controller\UserController.class

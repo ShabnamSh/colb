@@ -140,7 +140,7 @@ public class FriendController {
 	public ResponseEntity<Friend> acceptFriendFriendRequest(@PathVariable("friendid") String friendID) {
 		log.debug("->->->->calling method acceptFriendFriendRequest");
         
-		friend = updateRequest(friendID, "A");
+		 updateRequest(friendID, "A");
 		return new ResponseEntity<Friend>(friend, HttpStatus.OK);
 
 	}
@@ -159,7 +159,7 @@ public class FriendController {
 			friend = friendDao.get(friendid, loggedInUserID);
 		else
 			friend = friendDao.get(loggedInUserID, friendid);
-		friend.setStatus(status); // N - New, R->Rejected, A->Accepted
+		friend.setStatus("A"); // N - New, R->Rejected, A->Accepted
 
 		friendDao.update(friend);
 

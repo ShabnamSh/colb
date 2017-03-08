@@ -158,7 +158,7 @@ public class JobController {
 	public ResponseEntity<JobApplication> selectUser(@PathVariable("userid") String userid,
 			@PathVariable("jobid") int jobid, @PathVariable("remarks") String remarks) {
 		logger.debug("Starting of the method selectUser");
-		jobApplication = updateJobApplicationStatus(userid, jobid, 'S', remarks);
+		jobApplication = updateJobApplicationStatus(userid, jobid, "S", remarks);
 
 		return new ResponseEntity<JobApplication>(jobApplication, HttpStatus.OK);
 	}
@@ -168,7 +168,7 @@ public class JobController {
 			@PathVariable("jobid") int jobid, @PathVariable("remarks") String remarks) {
 		logger.debug("Starting of the method canCallForInterview");
 
-		jobApplication = updateJobApplicationStatus(userid, jobid, 'C', remarks);
+		jobApplication = updateJobApplicationStatus(userid, jobid, "C", remarks);
 
 		return new ResponseEntity<JobApplication>(jobApplication, HttpStatus.OK);
 	}
@@ -177,12 +177,12 @@ public class JobController {
 	public ResponseEntity<JobApplication> rejectJobApplication(@PathVariable("userid") String userid,
 			@PathVariable("jobid") int jobid, @PathVariable("remarks") String remarks) {
 		logger.debug("Starting of the method rejectJobApplication");
-		jobApplication = updateJobApplicationStatus(userid, jobid, 'R', remarks);
+		jobApplication = updateJobApplicationStatus(userid, jobid, "R", remarks);
 
 		return new ResponseEntity<JobApplication>(jobApplication, HttpStatus.OK);
 	}
 
-	private JobApplication updateJobApplicationStatus(String userid, int jobid, char status, String remarks) {
+	private JobApplication updateJobApplicationStatus(String userid, int jobid, String status, String remarks) {
 		logger.debug("Starting of the method updateJobApplicationStatus");
 
 		if (isUserAppliedForTheJob(userid, jobid) == false) {

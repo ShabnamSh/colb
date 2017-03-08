@@ -182,7 +182,8 @@ app
 														$cookieStore.put(
 																'currentUser',
 																self.user);
-
+														$location
+														.path('/homme');
 														
 														if ($rootScope.currentUser.role === "admin") {
 															$location
