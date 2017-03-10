@@ -1,20 +1,44 @@
+<head>
 
+<style>
+a:link {
+    color: green;
+    background-color: transparent;
+    text-decoration: none;
+}
+a:visited {
+    color: pink;
+    background-color: transparent;
+    text-decoration: none;
+}
+a:hover {
+    color: red;
+    background-color: transparent;
+    text-decoration: underline;
+}
+a:active {
+    color: yellow;
+    background-color: transparent;
+    text-decoration: underline;
+}
+</style>
+</head>
 <div ng-controller="UserController as ctrl">
 <br>
 <br>
-	<div class ="nav navbar-nav-navbar-left" ng-show="currentUser.userid==''"> Welcome:{{currentUser.name}}|<a href="#" ng-click="ctrl.logout">Logout</a></div>
+	<div ng-show="currentUser.userid==''"> Welcome:{{currentUser.name}}|<a href="#" ng-click="ctrl.logout">Logout</a></div>
 			
 		
 		
 	
-		<div class="nav navbar-nav-navbar-right"><a href="#" ng-click="ctrl.myProfile()">My Profile</a>
-		</div>
+		
 		</div>
    <section>
    
         <div class="container">
 You logged in as a ::{{currentUser.role}}
-          
+          <a href="#" ng-click="ctrl.myProfile()">My Profile</a>
+		
                 <div class="col-md-10">
 
                     <div>
@@ -148,3 +172,4 @@ The ng-bind directive binds application data to the HTML view.
  
 </section>
   </div>
+  

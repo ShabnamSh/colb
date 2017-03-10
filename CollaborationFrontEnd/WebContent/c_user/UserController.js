@@ -144,6 +144,7 @@ app
 								self.reset();
 							};
 
+
 							self.authenticate = function(user) {
 								console.log("authenticate...")
 								UserService
@@ -208,7 +209,7 @@ app
 								alert("logout successfully")
 								$rootScope.currentUser = {};
 								$cookieStore.remove('currentUser');
-								UserService.logout()
+								UserService.logout();
 								$location.path('/');
 
 							}

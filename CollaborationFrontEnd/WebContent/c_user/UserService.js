@@ -42,9 +42,9 @@ app.factory('UserService', ['$http', '$q','$rootScope', function($http, $q,$root
                             );
             },
             
-            accept: function(id) {
+            accept: function(userid) {
             	console.log("calling approve ")
-                    return $http.get(BASE_URL+'/accept/'+id)
+                    return $http.get(BASE_URL+'/accept/'+userid)
                             .then(
                                     function(response){
                                         return response.data;
@@ -56,9 +56,9 @@ app.factory('UserService', ['$http', '$q','$rootScope', function($http, $q,$root
                             );
             },
             
-            reject: function(id, reason) {
+            reject: function(userid, reason) {
             	console.log("calling reject ")
-                    return $http.get(BASE_URL+'/reject/'+id+'/'+reason)
+                    return $http.get(BASE_URL+'/reject/'+userid+'/'+reason)
                             .then(
                                     function(response){
                                         return response.data;
@@ -84,7 +84,7 @@ app.factory('UserService', ['$http', '$q','$rootScope', function($http, $q,$root
                             );
             },
              
-            updateUser: function(user, id){
+            updateUser: function(user, userid){
             	console.log("calling fetchAllUsers ")
                     return $http.put(BASE_URL+'/updateUser/', user)  //2
                             .then(

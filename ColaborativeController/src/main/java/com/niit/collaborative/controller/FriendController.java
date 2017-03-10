@@ -110,7 +110,7 @@ public class FriendController {
 	}
 	
 	
-	private boolean isFriendRequestAvailabe(String friendid)
+	private boolean isFriendRequestAvailable(String friendid)
 	{
 		String loggedInUserID = (String) httpSession.getAttribute("loggedInUserID");
 		
@@ -149,23 +149,23 @@ public class FriendController {
 		String loggedInUserID = (String) httpSession.getAttribute("loggedInUserID");
 		log.debug("loggedInUserID : " + loggedInUserID);
 		
-		if(isFriendRequestAvailabe(friendid)==false)
+		if(isFriendRequestAvailable(friendid)==false)
 		{
 			friend.setErrorcode("404");
 			friend.setErrorMessage("The request does not exist.  So you can not update to "+status);
 		}
 		
-		if (status.equals("A") || status.equals("R"))
+		if (status.equals("A") || status.equals("R")||status.equals("U"))
 			friend = friendDao.get(friendid, loggedInUserID);
 		else
 			friend = friendDao.get(loggedInUserID, friendid);
-		friend.setStatus("A"); // N - New, R->Rejected, A->Accepted
+		friend.setStatus(status); // N - New, R->Rejected, A->Accepted
 
 		friendDao.update(friend);
 
 		friend.setErrorcode("200");
 		friend.setErrorMessage(
-				"Request from   " + friend.getUserid() + " To " + friend.getFriendid() + " has updated to :" + status);
+				"Request from   " + friend.getUserid() + "  accepted by " + friend.getFriendid() + " has updated to :" + status);
 		log.debug("Ending of the method updateRequest");
 		return friend;
 

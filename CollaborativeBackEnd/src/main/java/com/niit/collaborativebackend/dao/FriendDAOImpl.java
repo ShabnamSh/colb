@@ -30,13 +30,13 @@ public class FriendDAOImpl implements FriendDAO {
 
 				/*+ " union  " +*/
 
-		String hql2= "select userID from Friend where friendID='" + userid + "' and status = 'A'";
+		String hql2= "select userid from Friend where friendid='" + userid + "' and status = 'A'";
 
 		log.debug("getMyFriends hql1 : " + hql1);
 		log.debug("getMyFriends hql2 : " + hql2);
 	
-		List<Friend> list1 = sessionFactory.openSession().createQuery(hql1).list();
-		List<Friend> list2 = sessionFactory.openSession().createQuery(hql2).list();
+		List<Friend> list1 = sessionFactory.getCurrentSession().createQuery(hql1).list();
+		List<Friend> list2 = sessionFactory.getCurrentSession().createQuery(hql2).list();
 		
 		
 		
@@ -61,7 +61,7 @@ public class FriendDAOImpl implements FriendDAO {
 		// TODO Auto-generated method stub
 		try {
 			log.debug("Starting of update friend  ");
-			
+			log.debug("user ID : " + friend.getUserid() + " Friend id :" + friend.getFriendid());
 			sessionFactory.getCurrentSession().update(friend);
 			return true;
 		} catch (Exception e) {

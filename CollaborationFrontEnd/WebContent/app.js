@@ -18,7 +18,12 @@ app.config(function($routeProvider){
 		controller : 'UserController'
 	})
 	.when('/homme',{
-		templateUrl:'c_home/homme.html'
+		templateUrl:'c_home/homme.html',
+			controller : 'UserController'
+	})
+	.when('/adminhome',{
+		templateUrl:'c_common/adminhome.html',
+			controller : 'UserController'
 	})
 	
 	.otherwise({
@@ -35,7 +40,7 @@ app.run(function($rootScope,$location,$cookieStore,$http){
 	        // redirect to login page if not logged in and trying to access a restricted page
 	     
 		 var userPages = ['/myProfile','/create_blog','/add_friend','/search_friend','/homme','/view_friend', '/viewFriendRequest','/chat','/search']
-		 var adminPages = ["/post_job","/manage_users"]
+		 var adminPages = ['/post_job','/adminhome','/manage_users']
 		 
 		 var currentPage = $location.path()
 		 
