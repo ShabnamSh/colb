@@ -242,7 +242,7 @@ public class UserController {
 		/*
 		 * { "id": "alm1", "password": "alm1" }
 		 */
-		@PostMapping(value = "/login")
+		@PostMapping("/login")
 		public ResponseEntity<User> login(@RequestBody User user, HttpSession session) {
 			log.debug("calling method authenticate");
 			user = userDao.isValidUser(user.getUserid(), user.getPassword());

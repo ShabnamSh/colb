@@ -1,5 +1,6 @@
 package com.niit.collaborativebackend.model;
 
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -12,6 +13,8 @@ import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.stereotype.Component;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name="USERDETAIL",schema="COLBDB")
@@ -33,7 +36,17 @@ public class User extends BaseDomain {
 	@NotEmpty
 	private String role;
 	private String reason;
+	@JsonIgnore
+	@OneToMany(mappedBy="sender", fetch=FetchType.EAGER)
+	private List<Friend> friends;
 	
+	
+	public List<Friend> getFriends() {
+		return friends;
+	}
+	public void setFriends(List<Friend> friends) {
+		this.friends = friends;
+	}
 	public String getUserid() {
 		return userid;
 	}

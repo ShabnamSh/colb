@@ -129,24 +129,35 @@ app
 										}, null);
 							};
 
-							self.updateUser = function(user) {
+							self.updateUser = function(currentUser) {
 								console.log("updateUser...")
-								UserService.updateUser(user).then(
-										self.fetchAllUsers, null);
+								UserService
+										.updateUser(currentUser)
+										.then(
+												function(d) {
+													self.user = d;
+													$location
+													.path("/homme")
+											alert("User updated successfully");
+												},
+												function(errResponse) {
+													console
+															.error('Error while update user.');
+												});
 							};
 
+							
 							self.update = function() {
 								{
-									console.log('Update the user details',
-											self.user);
-									self.updateUser(self.user);
+									console.log('Update the user details',$rootScope.currentUser);
+									self.updateUser($rootScope.currentUser);
 								}
 								self.reset();
 							};
 
 
 							self.authenticate = function(user) {
-								console.log("authenticate...")
+								console.log("authenticate...");
 								UserService
 										.authenticate(user)
 										.then(
@@ -168,27 +179,26 @@ app
 													} else { // valid
 																// credentials
 														console
-																.log("Valid credentials. Navigating to home page")
+																.log("Valid credentials. Navigating to home page");
 
 														/* self.fetchAllUsers(); */
 
 														console
 																.log('Current user : '
-																		+ self.user)
-														$rootScope.currentUser = self.user
+																		+ self.user);
+														$rootScope.currentUser = self.user;
 														
 
-														$http.defaults.headers.common['Authorization'] = 'Basic '
-																+ $rootScope.currentUser;
+														/*$http.defaults.headers.common['Authorization'] = 'Basic '
+																+ $rootScope.currentUser;*/
 														$cookieStore.put(
 																'currentUser',
 																self.user);
-														$location
-														.path('/homme');
+
 														
 														if ($rootScope.currentUser.role === "admin") {
 															$location
-																	.path('/post_job');
+																	.path('/adminhome');
 														}
 
 														else {
@@ -220,8 +230,7 @@ app
 
 							self.login = function() {
 								{
-									console.log('login validation????????',
-											self.user);
+									console.log('login validation????????'+self.user);
 									self.authenticate(self.user);
 								}
 

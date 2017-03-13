@@ -112,7 +112,7 @@ public class BlogController {
 		return new ResponseEntity<Blog>(blog, HttpStatus.OK);
 
 	}
-	@RequestMapping(value = "/blog/{id}", method = RequestMethod.GET)
+	/*@RequestMapping(value = "/blog/{id}", method = RequestMethod.GET)
 	public ResponseEntity<Blog> delete(@PathVariable("id") int id) {
 		log.debug("Starting of the method delete");
 
@@ -120,7 +120,7 @@ public class BlogController {
 		log.debug("Ending of the method delete");
 		return new ResponseEntity<Blog>(blog, HttpStatus.OK);
 
-	}
+	}*/
 
 	private Blog updateStatus(int id, char status, String reason) {
 		log.debug("Starting of the method updateStatus");

@@ -3,16 +3,30 @@ package com.niit.collaborativebackend.dao;
 import java.util.List;
 
 import com.niit.collaborativebackend.model.Friend;
+import com.niit.collaborativebackend.model.User;
 
 public interface FriendDAO {
-	public List<Friend> getMyFriends(String userid);
-	public boolean save(Friend friend);
+public List<Friend> getAllFriends();
+	
+	public List<Friend> getMyFriendList(String userid);
+	
+	public List<User> searchAllUsers(String userid);
+	
+	public List<User> searchSentRequests(String userid);
+	
 	public boolean update(Friend friend);
-	public void delete(String userid, String friendid);
-	public List<Friend> getNewFriendRequests(String friendid);
-	public List<Friend> getRequestsSendByMe(String userid);
-	public Friend get(String userid, String friendid);
-	public Friend get(String userid);
-	public void setOnline(String friendid);
-	public void setOffLine(String friendid);
+	
+	public boolean isFriendRequestSent(String userid,String friendid);
+	
+	public boolean isFriend(String userid,String friendid);
+	
+	public boolean sendFriendRequest(Friend friend);	
+	
+	public Friend getByRequest(String userid,String friendid);
+	
+	public boolean rejectRequest(Friend friend);
+	
+	public boolean acceptRequest(Friend friend);
+	
+	public boolean unFriend(String userid,String friendid);
 }

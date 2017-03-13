@@ -11,57 +11,48 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.niit.collaborativebackend.model.Friend;
+import com.niit.collaborativebackend.model.User;
 @Repository("friendDao")
 @Transactional
 public class FriendDAOImpl implements FriendDAO {
 	private static final Logger log = LoggerFactory.getLogger(FriendDAOImpl.class);
 	@Autowired
 	private SessionFactory sessionFactory;
-	
-	public List<Friend> getMyFriends(String userid) {
-		// TODO Auto-generated method stub
-		/*
-		 * select user_id from c_friend where user_id='Shabnam' and status ='A'
-		 * UNION select friend_id from c_friend where user_id='Shabnam' and
-		 * status ='A' MINUS select user_id from c_friend where
-		 * user_id='Shabnam';
-		 */
-		String hql1 = "select friendid  from Friend where userid='" + userid + "' and status = 'A' ";
-
-				/*+ " union  " +*/
-
-		String hql2= "select userid from Friend where friendid='" + userid + "' and status = 'A'";
-
-		log.debug("getMyFriends hql1 : " + hql1);
-		log.debug("getMyFriends hql2 : " + hql2);
-	
-		List<Friend> list1 = sessionFactory.getCurrentSession().createQuery(hql1).list();
-		List<Friend> list2 = sessionFactory.getCurrentSession().createQuery(hql2).list();
-		
-		
-		
-		list1.addAll(list2);
-
-		return list1;
-	}
-	public boolean save(Friend friend) {
-		// TODO Auto-generated method stub
+	public FriendDAOImpl(SessionFactory sessionFactory) {
+		// TODO Auto-generated constructor stub
 		try {
-			log.debug("Starting of save friend  ");
-			
-			sessionFactory.getCurrentSession().save(friend);
-			return true;
+			this.sessionFactory = sessionFactory;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
+			log.debug("unable to connect to db");
 			e.printStackTrace();
-			return false;
 		}
+	}
+	@SuppressWarnings("unchecked")
+	public List<Friend> getAllFriends() {
+		// TODO Auto-generated method stub
+		return sessionFactory.getCurrentSession().createQuery("from Friend").list();
+	}
+	@SuppressWarnings("unchecked")
+	public List<Friend> getMyFriendList(String userid) {
+		// TODO Auto-generated method stub
+		return sessionFactory.getCurrentSession().createQuery("from Friend where friendid='" + userid + "'").list();
+	}
+	@SuppressWarnings("unchecked")
+	public List<User> searchAllUsers(String userid) {
+		// TODO Auto-generated method stub
+		String hql = "from User u where u.userid not in (select f.friendid from Friend f where (f.useridd='"+userid+"' or f.friendid='"+userid+"') and (f.status='A' or f.status='N')) and u.userid not in (select f.useridd from Friend f where (f.useridd='"+userid+"' or f.friendid='"+userid+"') and (f.status='A' or f.status='N')) and u.role not in ('admin')";
+		return sessionFactory.getCurrentSession().createQuery(hql).list();
+	}
+	@SuppressWarnings("unchecked")
+	public List<User> searchSentRequests(String userid) {
+		// TODO Auto-generated method stub
+		String hql = "from User u where u.userid in (select f.friendid from Friend f where (f.useridd='"+userid+"') and (f.status='N')) and u.role not in ('admin')";
+		return sessionFactory.getCurrentSession().createQuery(hql).list();
 	}
 	public boolean update(Friend friend) {
 		// TODO Auto-generated method stub
 		try {
-			log.debug("Starting of update friend  ");
-			log.debug("user ID : " + friend.getUserid() + " Friend id :" + friend.getFriendid());
 			sessionFactory.getCurrentSession().update(friend);
 			return true;
 		} catch (Exception e) {
@@ -70,71 +61,83 @@ public class FriendDAOImpl implements FriendDAO {
 			return false;
 		}
 	}
-	public void delete(String userid, String friendid) {
-		// TODO Auto-generated method stub
-		Friend friend = new Friend();
-		friend.setFriendid(friendid);
-		friend.setUserid(userid);
-		sessionFactory.openSession().delete(friend);
-		
+	public boolean isFriendRequestSent(String useridd, String friendid) {
+		String hql = "from Friend where useridd='" + useridd + "' and friendid='" + friendid + "'";
+		Query query = sessionFactory.getCurrentSession().createQuery(hql);
+		if (query.uniqueResult() != null) {
+			return true;
+		} else {
+			return false;
+		}
 	}
-	public List<Friend> getNewFriendRequests(String friendid) {
+	public boolean isFriend(String useridd, String friendid) {
 		// TODO Auto-generated method stub
-		String hql = "select userid from Friend where friendid=" + "'" + friendid + "' and status ='" + "N'";
-
-		log.debug(hql);
-		 return  sessionFactory.openSession().createQuery(hql).list();
-
+		String hql = "from Friend where useridd='" + useridd + "' and friendid='" + friendid
+				+ "' and status='A'";
+		Query query = sessionFactory.getCurrentSession().createQuery(hql);
+		if (query.uniqueResult() != null) {
+			return true;
+		} else {
+			return false;
+		}
 	}
-	public List<Friend> getRequestsSendByMe(String userid) {
+	public boolean sendFriendRequest(Friend friend) {
 		// TODO Auto-generated method stub
-		String hql = "select friendid from Friend where userid=" + "'" + userid + "' and status ='" + "N'";
-
-		log.debug(hql);
-		return  sessionFactory.openSession().createQuery(hql).list();
-
-		
+		try {
+			sessionFactory.getCurrentSession().save(friend);
+			return true;
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		}
 	}
-	public Friend get(String userid, String friendid) {
+	public Friend getByRequest(String useridd, String friendid) {
 		// TODO Auto-generated method stub
-		String hql = "from Friend where userid=" + "'" + userid + "' and friendid= '" + friendid + "'";
-
-		log.debug("hql: " + hql);
-		Query query = sessionFactory.openSession().createQuery(hql);
-
-		return (Friend) query.uniqueResult();
+		return (Friend) sessionFactory.getCurrentSession()
+				.createQuery("from Friend where useridd='" + useridd + "' and friendid='" + friendid + "'")
+				.uniqueResult();
 	}
-	public Friend get(String userid) {
+	public boolean rejectRequest(Friend friend) {
 		// TODO Auto-generated method stub
-		String hql = "from Friend where userid=" + "'" + userid + "' and friendID= '" + userid + "'";
-
-		log.debug("hql: " + hql);
-		Query query = sessionFactory.openSession().createQuery(hql);
-
-		return (Friend) query.uniqueResult();
+		try {
+			sessionFactory.getCurrentSession().update(friend);
+			return true;
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		}
 	}
-	public void setOnline(String friendid) {
+	public boolean acceptRequest(Friend friend) {
 		// TODO Auto-generated method stub
-		log.debug("Starting of the metnod setOnline");
-		String hql = " UPDATE Friend	SET isOnline = 'Y' where friendid='" + friendid + "'";
-		log.debug("hql: " + hql);
-		Query query = sessionFactory.openSession().createQuery(hql);
-		query.executeUpdate();
-		log.debug("Ending of the metnod setOnline");
-
-		
+		try {
+			Friend friend2 = new Friend();
+		    friend2.setUseridd(friend.getFriendid());
+			friend2.setFriendid(friend.getUseridd());
+			friend2.setStatus("A");
+			sessionFactory.getCurrentSession().save(friend2);
+			sessionFactory.getCurrentSession().update(friend);			
+			return true;
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		}
 	}
-	public void setOffLine(String friendid) {
+	public boolean unFriend(String useridd, String friendid) {
 		// TODO Auto-generated method stub
-		log.debug("Starting of the metnod setOffLine");
-		String hql = " UPDATE Friend	SET isOnline = 'N' where friendid='" + friendid + "'";
-		log.debug("hql: " + hql);
-		Query query = sessionFactory.openSession().createQuery(hql);
-		query.executeUpdate();
-		log.debug("Ending of the metnod setOffLine");
-
-		
+		try {
+			sessionFactory.getCurrentSession().delete(getByRequest(useridd, friendid));
+			sessionFactory.getCurrentSession().delete(getByRequest(friendid, useridd));
+			return true;
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		}	
 	}
+	
 	
 
 }

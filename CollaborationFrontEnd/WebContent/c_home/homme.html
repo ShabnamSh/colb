@@ -7,7 +7,7 @@ a:link {
     text-decoration: none;
 }
 a:visited {
-    color: pink;
+    color: green;
     background-color: transparent;
     text-decoration: none;
 }
@@ -26,7 +26,7 @@ a:active {
 <div ng-controller="UserController as ctrl">
 <br>
 <br>
-	<div ng-show="currentUser.userid==''"> Welcome:{{currentUser.name}}|<a href="#" ng-click="ctrl.logout">Logout</a></div>
+	<div ng-show="currentUser.userid==''"> <strong>Welcome:</strong>{{currentUser.name}}|<a href="#" ng-click="ctrl.logout">Logout</a></div>
 			
 		
 		
@@ -37,8 +37,8 @@ a:active {
    
         <div class="container">
 You logged in as a ::{{currentUser.role}}
-          <a href="#" ng-click="ctrl.myProfile()">My Profile</a>
-		
+          <a href="#/myProfile" >My Profile</a>
+		<a href="#/searchFriend" >Friends</a>
                 <div class="col-md-10">
 
                     <div>
@@ -53,6 +53,7 @@ You logged in as a ::{{currentUser.role}}
                                 <div class="article-heading">
                                     <h2> Heading </h2>
                                 </div>
+                                 </a>
                                 <div class="article-img">
                                     <img src="" />
                                 </div>
@@ -78,7 +79,7 @@ The ng-model directive binds the value of HTML controls (input, select, textarea
 The ng-bind directive binds application data to the HTML view.
                                     </p>
                                 </div>
-                            </a>
+                           
                         </div>
 
                         <div class="article custom-bg-inset">
@@ -92,6 +93,7 @@ The ng-bind directive binds application data to the HTML view.
                                 <div class="article-heading">
                                     <h2> Heading </h2>
                                 </div>
+                                 </a>
                                 <div class="article-img">
                                     <img src="" />
                                 </div>
@@ -117,7 +119,7 @@ The ng-model directive binds the value of HTML controls (input, select, textarea
 The ng-bind directive binds application data to the HTML view.
                                     </p>
                                 </div>
-                            </a>
+                          
                         </div>
 
                          <div class="article custom-bg-inset">
@@ -133,6 +135,7 @@ The ng-bind directive binds application data to the HTML view.
                                 </div>
                                 <div class="article-img">
                                     <img src="" />
+                                     </a>
                                 </div>
                                 <div class="article-description">
                                     <p>
@@ -156,7 +159,7 @@ The ng-model directive binds the value of HTML controls (input, select, textarea
 The ng-bind directive binds application data to the HTML view.
                                     </p>
                                 </div>
-                            </a>
+                           
                         </div>
 
                        

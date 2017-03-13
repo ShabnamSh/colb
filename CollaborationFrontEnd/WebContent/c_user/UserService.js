@@ -85,8 +85,8 @@ app.factory('UserService', ['$http', '$q','$rootScope', function($http, $q,$root
             },
              
             updateUser: function(user, userid){
-            	console.log("calling fetchAllUsers ")
-                    return $http.put(BASE_URL+'/updateUser/', user)  //2
+            	console.log("calling UpdateUsers ")
+                    return $http.put(BASE_URL+'/updateUser', user)  //2
                             .then(
                                     function(response){
                                         return response.data;
@@ -113,7 +113,7 @@ app.factory('UserService', ['$http', '$q','$rootScope', function($http, $q,$root
         
             
             authenticate: function(user){
-            	   console.log("Calling the method authenticate with the user :"+user)
+            	   console.log("Calling the method authenticate with the user :"+user);
           		 
                 return $http.post(BASE_URL+'/login',user)
                         .then(

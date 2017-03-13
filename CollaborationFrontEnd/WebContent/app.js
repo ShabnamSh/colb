@@ -4,8 +4,16 @@ app.config(function($routeProvider){
 	.when('/',{
 		templateUrl:'c_home/home.html'
 	})
+	.when('/myProfile',{
+		templateUrl:'c_user/myProfile.html',
+		controller : 'UserController'
+	})
 	.when('/login', {
 		templateUrl : 'c_user/login.html',
+		controller : 'UserController'
+	})
+	.when('/updateuser', {
+		templateUrl : 'c_user/update.html',
 		controller : 'UserController'
 	})
 	.when('/search', {
@@ -25,33 +33,37 @@ app.config(function($routeProvider){
 		templateUrl:'c_common/adminhome.html',
 			controller : 'UserController'
 	})
+	.when('/searchFriend', {
+		templateUrl : 'c_friend/searchFriend.html',
+		controller : 'FriendController'
+	})
 	
 	.otherwise({
 		redirectTo : '/'
-	});
+	})
 
 });
 app.run(function($rootScope,$location,$cookieStore,$http){
 
 	 $rootScope.$on('$locationChangeStart', function (event, next, current) {
 		 
-		 console.log("$locationChangeStart")
+		 console.log("$locationChangeStart");
 		 //http://localhost:8080/Collaboration/addjob
 	        // redirect to login page if not logged in and trying to access a restricted page
 	     
-		 var userPages = ['/myProfile','/create_blog','/add_friend','/search_friend','/homme','/view_friend', '/viewFriendRequest','/chat','/search']
-		 var adminPages = ['/post_job','/adminhome','/manage_users']
+		 var userPages = ['/myProfile','/create_blog','/updateuser','/searchFriend','/homme','/chat','/search'];
+		 var adminPages = ['/post_job','/adminhome','/manage_users'];
 		 
-		 var currentPage = $location.path()
+		 var currentPage = $location.path();
 		 
 		 var isUserPage = $.inArray(currentPage, userPages) ===0;
 		 var isAdminPage = $.inArray(currentPage, adminPages) ===0;
 		 
 		 var isLoggedIn = $rootScope.currentUser.userid;
 	        
-	     console.log("isLoggedIn:" +isLoggedIn)
-	     console.log("isUserPage:" +isUserPage)
-	     console.log("isAdminPage:" +isAdminPage)
+	     console.log("isLoggedIn:" +isLoggedIn);
+	     console.log("isUserPage:" +isUserPage);
+	     console.log("isAdminPage:" +isAdminPage);
 	        
 	        if(!isLoggedIn)
 	        	{

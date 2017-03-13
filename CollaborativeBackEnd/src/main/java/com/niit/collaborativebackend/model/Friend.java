@@ -25,19 +25,30 @@ public class Friend extends BaseDomain {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int id;
 	@NotNull
-	private String userid;
+	private String useridd;
 	@NotNull
 	private String friendid;
 	@NotNull
 	private String status;
-	@Column(name="is_online")
-	private char  isOnline;
+	@ManyToOne(fetch=FetchType.EAGER)
+	@JoinColumn(name="useridd",nullable=false,insertable=false,updatable=false)
+	private User sender; 
 	
-	public char getIsOnline() {
-		return isOnline;
+	@ManyToOne(fetch=FetchType.EAGER)
+	@JoinColumn(name="friendid",nullable=false,insertable=false,updatable=false)
+	private User receiver;
+	
+	public User getSender() {
+		return sender;
 	}
-	public void setIsOnline(char isOnline) {
-		this.isOnline = isOnline;
+	public void setSender(User sender) {
+		this.sender = sender;
+	}
+	public User getReceiver() {
+		return receiver;
+	}
+	public void setReceiver(User receiver) {
+		this.receiver = receiver;
 	}
 	
 	public int getId() {
@@ -46,11 +57,12 @@ public class Friend extends BaseDomain {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public String getUserid() {
-		return userid;
+	
+	public String getUseridd() {
+		return useridd;
 	}
-	public void setUserid(String userid) {
-		this.userid = userid;
+	public void setUseridd(String useridd) {
+		this.useridd = useridd;
 	}
 	public String getFriendid() {
 		return friendid;
