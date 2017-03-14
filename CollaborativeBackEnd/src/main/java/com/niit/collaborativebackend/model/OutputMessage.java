@@ -7,10 +7,10 @@ private Date time;
     
     private String userid;
     
-    public OutputMessage(Message original, Date time, String userID) {
+    public OutputMessage(Message original, Date time, String userid) {
        super(original.getId(), original.getMessage());
        this.time=time;
-       this.userid=userID;
+       this.userid=userid;
         
     }
 
