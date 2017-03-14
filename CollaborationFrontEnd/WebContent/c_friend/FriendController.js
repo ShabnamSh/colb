@@ -109,7 +109,7 @@ app.controller('FriendController', ['UserService','$scope', 'FriendService','$lo
                       .then(
                     		  function (d) {
                         		  self.friend = d; 
-                        		  $route.reload();
+                        		  
                                   },
                               function(errResponse){
                                    console.error('Error while rejectFriendRequest');
@@ -122,7 +122,7 @@ app.controller('FriendController', ['UserService','$scope', 'FriendService','$lo
                       .then(
                     		  function (d) {
                         		  self.friend = d; 
-                        		  $route.reload();
+                        		  
                                   }, 
                               function(errResponse){
                                    console.error('Error while unFriend ');

@@ -3,6 +3,7 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
+
 </head>
 <body>
 <section id="searchFriend" ng-controller="FriendController as ctrl">
@@ -20,27 +21,27 @@
                         </div>
                         <input class="form-control mb10" ng-model="searchtext" type="text" placeholder="Search Users.." />
                         <div class="friend-box">
-                            <div class="friend" ng-repeat="user in ctrl.users | filter : searchtext">
-                                <a  href="#">
+                            <div class="friend" ng-repeat="user in ctrl.users | filter : searchtext" ng-show="user.userid!=currentUser.userid">
+                               
                                     <img src="resources/img/user-128.png" />&nbsp;&nbsp;{{user.name}}
-                                </a>                                
-                                <button ng-click="ctrl.sendFriendRequest(user.userid)" class="btn custom-btn">
+                                                              
+                                <button ng-click="ctrl.sendFriendRequest(user.userid)" class="btn btn-primary">
                                     Add Friend &nbsp;<i class="fa fa-plus"></i>
                                 </button>
                             </div>
                             <div class="friend" ng-repeat="user in ctrl.friends | filter : searchtext" ng-show="user.userid!=currentUser.userid">
-                                <a  href="#">
+                                
                                     <img src="resources/img/user-128.png" />&nbsp;&nbsp;{{user.name}}
-                                </a>                                
-                                <button ng-click="ctrl.sendFriendRequest(user.userid)" class="btn custom-btn">
+                                                            
+                                <button ng-click="ctrl.sendFriendRequest(user.userid)" class="btn btn-success">
                                     Request Sent &nbsp;<i class="fa fa-check"></i>
                                 </button>
                             </div>
                             <div class="friend" ng-repeat="user in ctrl.friends | filter : searchtext" ng-show="friend.status=='A'">
-                                <a href="#">
+                              
                                     <img src="resources/img/user-128.png" />&nbsp;&nbsp;{{user.sender.name}}
-                                </a>                                
-                                <button ng-click="ctrl.unFriend(user.userid)" class="btn custom-btn-red">
+                                                            
+                                <button ng-click="ctrl.unFriend(user.userid)" class="btn btn-danger">
                                     Unfriend
                                 </button>
                             </div>
@@ -53,13 +54,13 @@
                         <div class="clearfix"></div>                
                         <div class="friend-box" style="height: 294px;">
                             <div class="friend" ng-repeat="friend in ctrl.friendlist" ng-show="friend.friendid==currentUser.userid && friend.status=='N'">
-                                <a  href="#" >
+                               
                                     <img src="resources/img/user-128.png" />&nbsp;&nbsp;{{friend.sender.name}}
-                                </a>
-                                <button ng-click="ctrl.acceptFriendRequest(friend.useridd)" class="btn custom-btn">
+                                
+                                <button ng-click="ctrl.acceptFriendRequest(friend.useridd)" class="btn btn-success">
                                     Accept
                                 </button>
-                                <button ng-click="ctrl.rejectFriendReject(friend.useridd)" class="btn custom-btn-red mr10">
+                                <button ng-click="ctrl.rejectFriendReject(friend.useridd)" class="btn btn-danger">
                                     Reject
                                 </button>
                             </div>
@@ -75,13 +76,13 @@
                        <h2 class="text-center">Friendlist</h2>
                    </div>
                 
-                        <input class="form-control mb10" type="text" ng-model="searchtf" placeholder="Search Friends.." />
+                        <input class="form-control mb10" type="text" ng-model="searchtf" placeholder="Search Friends..." />
                         <div class="friend-box">
                             <div class="friend" ng-repeat="friend in ctrl.friendlist | filter : searchtf" ng-show="friend.status=='A'">
-                                <a  href="#">
+                               
                                     <img src="resources/img/user-128.png" />&nbsp;&nbsp;{{friend.sender.name}}
-                                </a>
-                                <button ng-click="ctrl.unFriend(friend.useridd)" class="btn custom-btn-red">
+                               
+                                <button ng-click="ctrl.unFriend(friend.useridd)" class="btn btn-warning">
                                     Unfriend
                                 </button>
                             </div>

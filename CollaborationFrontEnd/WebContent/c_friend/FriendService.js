@@ -92,7 +92,7 @@ app.factory('FriendService', ['$http', '$q','$rootScope', function($http, $q,$ro
      
 unFriend: function(userid){
 	console.log("Starting of the method unFriend")
-    return $http.put(BASE_URL+'/unFriend/'+userid)
+    return $http.put(BASE_URL+'/unFriend/'+userid+"/")
             .then(
                     function(response){
                         return response.data;
