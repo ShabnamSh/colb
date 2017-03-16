@@ -76,8 +76,8 @@ public class UserController {
 		user.setErrorMessage("User already exist with id : " + user.getUserid());
 		return new ResponseEntity<User>(user, HttpStatus.OK);
 	}
-	@DeleteMapping("/deleteUser/{id}")
-	public ResponseEntity<User> deleteUser(@PathVariable("id")String id){
+	@DeleteMapping("/deleteUser/{userid}")
+	public ResponseEntity<User> deleteUser(@PathVariable("userid")String id){
 		User user=userDao.get(id);
 		if(user!=null){
 			userDao.delete(user);
@@ -139,6 +139,29 @@ public class UserController {
 
 			return new ResponseEntity<User>(user, HttpStatus.OK); // 200
 
+		}
+		@PutMapping("/removeAdmin/{userid}")
+		public ResponseEntity<User> removeAdmin(@PathVariable("userid")String userid){
+			log.debug("inside removeAdmin method...");
+			user = userDao.get(userid);
+			if(user!=null){
+				if(user.getRole().equals("admin")){
+					user.setRole("employee");
+					user.setErrorcode("200");
+					user.setErrorMessage("successfully removed admin");
+					userDao.update(user);
+				}
+				else{
+					user.setErrorcode("404");
+					user.setErrorMessage("Not an admin");
+				}
+			}
+			else {
+				user.setErrorcode("301");
+				user.setErrorMessage("User not found ...");
+			}
+			
+			return new ResponseEntity<User>(user,HttpStatus.OK);
 		}
 		@PutMapping("/updateUser")
 		public ResponseEntity<User> updateUser(@RequestBody User user) {

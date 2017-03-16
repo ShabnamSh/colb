@@ -5,12 +5,12 @@ import java.util.Date;
 public class OutputMessage  extends Message{
 private Date time;
     
-    private String userid;
+   
     
-    public OutputMessage(Message original, Date time, String userid) {
-       super(original.getId(), original.getMessage());
+    public OutputMessage(Message original, Date time) {
+       super(original.getId(), original.getMessage(),original.getUserid());
        this.time=time;
-       this.userid=userid;
+      
         
     }
 
@@ -22,13 +22,5 @@ private Date time;
 		this.time = time;
 	}
 
-	public String getUserid() {
-		return userid;
-	}
-
-	public void setUserid(String userid) {
-		this.userid = userid;
-	}
-    
-
+	
 }

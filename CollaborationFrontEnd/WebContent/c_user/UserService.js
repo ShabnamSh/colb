@@ -110,6 +110,21 @@ app.factory('UserService', ['$http', '$q','$rootScope', function($http, $q,$root
                         );
         },
         
+        setAdmin: function (userid) {
+            return $http.put(BASE_URL + '/makeAdmin/' + userid).then(function (response) { return response.data; },
+                function (errResponse) {
+                    console.error('Error while setting admin..');
+                    return $q.reject(errResponse);
+                });
+        },
+
+        removeAdmin: function (userid) {
+            return $http.put(BASE_URL + '/removeAdmin/' +userid).then(function (response) { return response.data; },
+                function (errResponse) {
+                    console.error('Error while removing admin..');
+                    return $q.reject(errResponse);
+                });
+        },
         
             
             authenticate: function(user){

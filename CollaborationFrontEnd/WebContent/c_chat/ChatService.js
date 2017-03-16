@@ -29,7 +29,9 @@ app.service("ChatService", function($q, $timeout,$rootScope) {
 			priority : 9
 		}, JSON.stringify({
 			message : message,
-			id : id
+			userid:$rootScope.currentUser.userid,
+	        id : id
+			
 		}));
 		console.log("message: " + message.message)
 		console.log("id : " + id)
@@ -48,9 +50,11 @@ app.service("ChatService", function($q, $timeout,$rootScope) {
 		console.log("data:" + data)
 		var message = JSON.parse(data)
 		var out = {};
+		
 		out.message = message.message;
 		out.time = new Date(message.time);
-		message.userid=$rootScope.currentUser.userid;
+		
+		  //message.userid=$rootScope.currentUser.userid;
 		out.userid =message.userid;
 		
 		console.log("data:" + data)

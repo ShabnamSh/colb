@@ -25,6 +25,10 @@ app.config(function($routeProvider){
 		templateUrl : 'c_user/register.html',
 		controller : 'UserController'
 	})
+	.when('/manageusers', {
+		templateUrl : 'c_admin/user.html',
+		controller : 'UserController'
+	})
 	.when('/homme',{
 		templateUrl:'c_home/homme.html',
 			controller : 'UserController'
@@ -56,7 +60,7 @@ app.run(function($rootScope,$location,$cookieStore,$http){
 	        // redirect to login page if not logged in and trying to access a restricted page
 	     
 		 var userPages = ['/myProfile','/create_blog','/updateuser','/searchFriend','/homme','/chat','/search'];
-		 var adminPages = ['/post_job','/adminhome','/manage_users'];
+		 var adminPages = ['/post_job','/adminhome','/manageusers'];
 		 
 		 var currentPage = $location.path();
 		 

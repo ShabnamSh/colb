@@ -11,8 +11,9 @@ app
 						'$cookieStore',
 						'$http',
 						'$q',
+						'$route',
 						function($scope, UserService, $location, $rootScope,
-								$cookieStore, $q, $http) {
+								$cookieStore, $q, $http,$route) {
 							console.log("UserController...")
 							var self = this;
 							this.user = {
@@ -96,16 +97,16 @@ app
 												});
 							};
 
-							self.accept = function(id) {
+							self.accept = function(userid) {
 								console.log("accept...")
 								UserService
-										.accept(id)
+										.accept(userid)
 										.then(
 												function(d) {
 													self.user = d;
 													self.fetchAllUsers
 													$location
-															.path("/manage_users")
+															.path("/login")
 													alert(self.user.errorMessage)
 
 												},
@@ -116,10 +117,10 @@ app
 												});
 							};
 
-							self.reject = function(id) {
+							self.reject = function(userid) {
 								console.log("reject...")
 								var reason = prompt("Please enter the reason");
-								UserService.reject(id, reason).then(
+								UserService.reject(userid, reason).then(
 										function(d) {
 											self.user = d;
 											self.fetchAllUsers
@@ -258,5 +259,28 @@ app
 								};
 								$scope.myForm.$setPristine(); // reset Form
 							};
+							 self.setAdmin = function (userid) {
+							        console.log('set admin...');
+							        UserService.setAdmin(userid).then(function (d) {
+							            self.user = d;
+							            alert("successfully made admin");
+							            $route.reload();
+							        },
+							        function (errResponse) {
+							            console.error('error making admin in controller...');
+							        });
+							    };
+
+							    self.removeAdmin = function (userid) {
+							        console.log('remove admin...');
+							        UserService.removeAdmin(userid).then(function (d) {
+							            self.user = d;
+							            alert("successfully removed admin");
+							            $route.reload();
+							        },
+							        function (errResponse) {
+							            console.error('error removing admin in controller...');
+							        });
+							    };
 
 						} ]);

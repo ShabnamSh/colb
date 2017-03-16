@@ -5,7 +5,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-<div class="col-md-10">
+<div  name="manageusers">
+<div class="generic-container" ng-controller="UserController as ctrl">
 
 				<div class="table-responsive custom-bg-inset">
 					<table class="table">
@@ -22,8 +23,8 @@
 								<th>Remove Admin</th>								
 							</tr>
 						</thead>
-						<tbody ng-init="fetchAllUsers()">
-							<tr ng-repeat="user in users">
+						<tbody ng-init="ctrl.fetchAllUsers()">
+							<tr ng-repeat="user in ctrl.users">
 								<td>{{user.userid}}</td>
 								<td>{{user.name}}</td>
 								<td>{{user.address}}</td>
@@ -32,10 +33,10 @@
 								<td>{{user.is_online}}</td>
 								<td>{{user.role}}</td>
 								<td>
-									<button ng-show="user.role=='employee'" ng-click="setAdmin(user.userid)" class="btn custom-btn">Set Admin</button>
+									<button ng-show="user.role=='employee'" ng-click="ctrl.setAdmin(user.userid)" class="btn custom-btn">Set Admin</button>
 								</td>
 								<td>
-									<button ng-show="user.role=='admin'" ng-click="removeAdmin(user.userid)" class="btn custom-btn">Remove Admin</button>
+									<button ng-show="user.role=='admin'" ng-click="ctrl.removeAdmin(user.userid)" class="btn custom-btn">Remove Admin</button>
 								</td>
 							</tr>
 							</tbody>
