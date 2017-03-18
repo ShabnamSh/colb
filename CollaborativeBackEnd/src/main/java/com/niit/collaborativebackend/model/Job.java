@@ -26,7 +26,6 @@ public class Job extends BaseDomain {
 	private String title;
 	private String description;
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "datetime", insertable=false)
 	private Date datetime;
 	private String qualification;
 	private String status;

@@ -5,16 +5,21 @@
 <title>Insert title here</title>
 </head>
 <body>
-<div  class="container" ng-controller="BlogController as ctrl">
+<div>
+<div  class="container" ng-controller="BlogController as ctrl"  name="listblog">
 
 
-Welcome to Blogs
-<div ng-repeat="blog in ctrl.blogs">
- <a href = "#"  ng-click="ctrl.getSelectedBlog(blog.id)"> Title  {{blog.title}} -  Written By:  {{blog.userid}}&nbsp;&nbsp;Date:{{blog.datetime}}</a>  
+Welcome to Blog
+<div ng-init=ctrl.fetchAllBlogs()>
+<div ng-repeat="blog in ctrl.blogs" ng-show="blog.status=='A'">
 
+{{blog.blog}}
+
+<a href = "#"  ng-click="ctrl.getSelectedBlog(blog.id)"> <br>Title  {{blog.title}}&nbsp;&nbsp; -  Written By:  {{blog.userid}}&nbsp;&nbsp;Date:{{blog.datetime}}</a>
 </div>
 
-
+</div>
+</div>
 </div>
 </body>
 </html>

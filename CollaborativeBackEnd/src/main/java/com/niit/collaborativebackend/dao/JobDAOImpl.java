@@ -8,17 +8,21 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.niit.collaborativebackend.model.Job;
 import com.niit.collaborativebackend.model.JobApplication;
 
 @Repository("jobDao")
+@Transactional
 public class JobDAOImpl  implements JobDAO{
 	private static final Logger log = LoggerFactory.getLogger(JobDAOImpl.class);
 
 	@Autowired(required = true)
 	private SessionFactory sessionFactory;
-
+public JobDAOImpl(){
+	
+}
 	public List<Job> getAllOpendJobs() {
 		// TODO Auto-generated method stub
 		log.debug("Starting of method getAllOpendJobs");

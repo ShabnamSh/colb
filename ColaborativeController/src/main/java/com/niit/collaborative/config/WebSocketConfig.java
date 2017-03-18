@@ -19,7 +19,7 @@ public class WebSocketConfig extends AbstractWebSocketMessageBrokerConfigurer{
 	 @Override
 	  public void configureMessageBroker(MessageBrokerRegistry config) {
 		logger.debug("Starting method configureMessageBroker");
-	    config.enableSimpleBroker("/topic");
+	    config.enableSimpleBroker("/topic","/queue");
 	    config.setApplicationDestinationPrefixes("/app");
 	    logger.debug("Ending method configureMessageBroker");
 	  }
@@ -28,7 +28,7 @@ public class WebSocketConfig extends AbstractWebSocketMessageBrokerConfigurer{
 		// TODO Auto-generated method stub
 		logger.debug("Starting method registerStompEndpoints");
 	    registry.addEndpoint("/chat").withSockJS();
-	   
+	    registry.addEndpoint("/chatp").withSockJS();
 	    logger.debug("Ending method registerStompEndpoints");
 		
 	}

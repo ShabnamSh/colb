@@ -1,7 +1,7 @@
 'use strict';
 
-app	.controller('JobController',['JobService','$location', '$rootScope',
-						function(JobService,  $location, $rootScope) {
+app	.controller('JobController',['JobService','$location', '$rootScope','$scope',
+						function(JobService, $location, $rootScope,$scope) {
 							console.log("JobController...")
 							var self = this;
 
@@ -22,10 +22,10 @@ app	.controller('JobController',['JobService','$location', '$rootScope',
 							function applyForJob(jobID) {
 								console.log("applyForJob");
 								var currentUser = $rootScope.currentUser
-								console.log("currentUser.id:" + currentUser.id)
+								console.log("currentUser.id:" + currentUser.userid)
 								//if(currentUser) -> not null, not empty and defined
 								
-								if (typeof currentUser.id == 'undefined') 
+								if (typeof currentUser.userid == 'undefined') 
 									{
 									   alert("Please login to apply for the job")
 	                                     console.log("User not logged in.  Can not apply for job")
@@ -34,7 +34,7 @@ app	.controller('JobController',['JobService','$location', '$rootScope',
 									   return
 									
 									}
-								console.log("->userID :" + currentUser.id
+								console.log("->userID :" + currentUser.userid
 										+ "  applying for job:" + jobID)
 										
 										
@@ -125,7 +125,7 @@ app	.controller('JobController',['JobService','$location', '$rootScope',
 												});
 							};
 
-							self.getAllJobs();
+							//self.getAllJobs();
 
 							self.submit = function() {
 								{

@@ -33,10 +33,10 @@
 								<td>{{user.is_online}}</td>
 								<td>{{user.role}}</td>
 								<td>
-									<button ng-show="user.role=='employee'" ng-click="ctrl.setAdmin(user.userid)" class="btn custom-btn">Set Admin</button>
+									<button ng-show="user.role=='employee'" ng-click="ctrl.setAdmin(user.userid)" class="btn btn-warning">Set Admin</button>
 								</td>
 								<td>
-									<button ng-show="user.role=='admin'" ng-click="ctrl.removeAdmin(user.userid)" class="btn custom-btn">Remove Admin</button>
+									<button ng-show="user.role=='admin'" ng-click="ctrl.removeAdmin(user.userid)" class="btn btn-warning">Remove Admin</button>
 								</td>
 							</tr>
 							</tbody>

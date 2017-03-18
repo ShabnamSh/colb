@@ -1,71 +1,45 @@
-<div>
 
-	
+<div ng-hide="currentUser==''">
 
+    <div name="post_job" ng-controller="JobController as ctrl">
+        <div class="container">
 
-	<div ng-hide="currentUser==''">
+            <div class="row">
+               
+                <div class="col-md-10">
 
-   <!--   alias name  -->
-		<div class="generic-container" ng-controller="JobController as ctrl">
+                    <div class="form-area custom-bg-inset">
+                        <h2 class="text-center">Post Job</h2>
+                        <form name="myForm" ng-submit="ctrl.submit()">
+                            <div class="form-block">
+                                <input type="text" ng-model="ctrl.job.title" class="form-control" placeholder="Job Headline..." />
+                            </div>
+                            <br>
+                            <div class="form-block">
+                                <textarea class="form-control" ng-model="ctrl.job.description" placeholder="Job Description..."></textarea>
+                            </div>
+                            <br>
+                            <div class="form-block">
+                               <input type="text" class="form-control" ng-model="ctrl.job.qualification" placeholder="Qualifications..." />
+                            </div>
+                            <br>
+                            <div class="form-block">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <input type="submit" class="custom-btn form-control" value="Save" />
+                                    </div>
+                                    <div class="col-md-6">
+                                        <input type="reset" ng-click="ctrl.reset()" class="custom-btn form-control" value="Reset" />
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
 
-			<form ng-submit="ctrl.submit()" name="myForm" class="form-horizontal">
+                </div>
+            </div>
 
-				<label>Please fill the Job details..</label>
-
-
-
-				<div class="row">
-					<div class="form-group col-md-12">
-						<label class="col-md-2 control-lable" for="title">Job Title</label>
-						<div class="col-md-7">
-							<input type="text" ng-model="ctrl.job.title" id="title"
-								class="title form-control input-sm"
-								placeholder="Enter job title" required  />
-						</div>
-					</div>
-				</div>
-				
-				<div class="row">
-					<div class="form-group col-md-12">
-						<label class="col-md-2 control-lable" for="qualification">Qualification</label>
-						<div class="col-md-7">
-							<input type="text" ng-model="ctrl.job.qualification" id="qualification"
-								class="title form-control input-sm"
-								placeholder="Enter job qualification" required  />
-						</div>
-					</div>
-				</div>
-
-
-				<div class="row">
-					<div class="form-group col-md-12">
-						<label class="col-md-2 control-lable" for="description">description</label>
-						<div class="col-md-7">
-							<textarea rows="50" cols="100" ng-model="ctrl.job.description"
-								id="description" class="description form-control input-sm"
-								placeholder="Enter Job description" required 
-								>
-							</textarea>
-
-						</div>
-					</div>
-				</div>
-
-				<div class="row">
-					<div class="form-actions floatRight">
-						<input type="submit" value="Create Job"
-							class="btn btn-primary btn-sm">
-						<button type="button" ng-click="ctrl.reset()"
-							class="btn btn-warning btn-sm">Reset Job</button>
-					</div>
-				</div>
-			</form>
-		</div>
-
-
-	</div>
-
-
-
-
+        </div>
+  </div>
 </div>
+ 

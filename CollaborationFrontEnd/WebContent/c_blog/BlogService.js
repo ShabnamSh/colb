@@ -88,10 +88,13 @@ app.factory('BlogService', ['$http', '$q','$rootScope', function($http, $q,$root
             },
             
             getBlog: function(id){
-                return $http.get  (BASE_URL+'/blogs'+id)
+            	 console.log("calling specefic blog")
+                return $http.get  (BASE_URL+'/blogbyid/'+id)
+               
                         .then(
                                 function(response){
                                 	$rootScope.selectedBlog = response.data
+                                	console.log("data"+response.data)
                                     return response.data;
                                 }, 
                                 function(errResponse){

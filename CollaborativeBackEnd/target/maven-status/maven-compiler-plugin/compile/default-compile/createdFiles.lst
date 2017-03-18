@@ -1,4 +1,5 @@
 com\niit\collaborativebackend\dao\BlogDAO.class
+com\niit\collaborativebackend\model\PrivateMessage.class
 com\niit\collaborativebackend\model\OutputMessage.class
 com\niit\collaborativebackend\model\Message.class
 com\niit\collaborativebackend\dao\JobDAOImpl.class

@@ -1,6 +1,7 @@
 package com.niit.collaborative.controller;
 
-import java.sql.Date;
+
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -37,7 +38,7 @@ public class BlogController {
 		log.debug(" Blog is creating by the blog :"+loggedInUserID);
 		blog.setUserid(loggedInUserID);
 		blog.setStatus('N');// A->Accepted,  R->Rejected
-		blog.setDatetime(new Date(System.currentTimeMillis()));
+		blog.setDatetime(new Date());
 		blogDao.save(blog);
 
 		return new ResponseEntity<Blog>(blog, HttpStatus.OK);
@@ -63,7 +64,7 @@ public class BlogController {
 		
 		//How it is returning JSONArray without proper return type i.e., ResponseEntity<List<Blog>>
 	}
-	@GetMapping("/blog/{id}")
+	@GetMapping("/blogbyid/{id}")
 	public Blog getBlog(@PathVariable("id") int id) {
 		log.debug("**************calling method getBlogs with the id " + id);
 		Blog blog = blogDao.get(id);

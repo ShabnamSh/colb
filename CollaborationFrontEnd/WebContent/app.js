@@ -41,11 +41,46 @@ app.config(function($routeProvider){
 		templateUrl : 'c_friend/searchFriend.html',
 		controller : 'FriendController'
 	})
+	.when('/chatp', {
+		templateUrl : 'c_chatforum/privatechat.html',
+		controller : 'ChatpController'
+	})
 	.when('/chat', {
 		templateUrl : 'c_chat/chat.html',
 		controller : 'ChatController'
 	})
-	
+	.when('/post_job', {
+		templateUrl : 'c_job/post_job.html',
+		controller : 'JobController'
+	})
+	.when('/search_job', {
+		templateUrl : 'c_job/search_job.html',
+		controller : 'JobController'
+	})
+	.when('/view_applied_job', {
+		templateUrl : 'c_job/view_applied_job.html',
+		controller : 'JobController'
+	})
+	.when('/view_job_deatils', {
+		templateUrl : 'c_job/view_job_details.html',
+		controller : 'JobController'
+	})
+	.when('/listblog', {
+		templateUrl : 'c_blog/listblog.html',
+		controller : 'BlogController'
+	})
+	.when('/viewblog', {
+		templateUrl : 'c_blog/viewblog.html',
+		controller : 'BlogController'
+	})
+	.when('/createblog', {
+		templateUrl : 'c_blog/createblog.html',
+		controller : 'BlogController'
+	})
+	.when('/myblog', {
+		templateUrl : 'c_blog/myblog.html',
+		controller : 'BlogController'
+	})
 	.otherwise({
 		redirectTo : '/'
 	})
@@ -59,7 +94,7 @@ app.run(function($rootScope,$location,$cookieStore,$http){
 		 //http://localhost:8080/Collaboration/addjob
 	        // redirect to login page if not logged in and trying to access a restricted page
 	     
-		 var userPages = ['/myProfile','/create_blog','/updateuser','/searchFriend','/homme','/chat','/search'];
+		 var userPages = ['/myProfile','/createblog','/updateuser','/searchFriend','/homme','/chat','/search','/chatp','/view_applied_job','/register'];
 		 var adminPages = ['/post_job','/adminhome','/manageusers'];
 		 
 		 var currentPage = $location.path();
@@ -68,7 +103,7 @@ app.run(function($rootScope,$location,$cookieStore,$http){
 		 var isAdminPage = $.inArray(currentPage, adminPages) ===0;
 		 
 		 var isLoggedIn = $rootScope.currentUser.userid;
-	        
+	       // var privatefriend=$rootScope.friend;
 	     console.log("isLoggedIn:" +isLoggedIn);
 	     console.log("isUserPage:" +isUserPage);
 	     console.log("isAdminPage:" +isAdminPage);
@@ -89,11 +124,11 @@ app.run(function($rootScope,$location,$cookieStore,$http){
 	        	
 				 var role = $rootScope.currentUser.role;
 				 
-				 if(isAdminPage && role!='admin' )
+				 if(isAdminPage===0 && role!='admin' )
 					 {
 					 
 					  alert("You can not do this operation as you are logged as : " + role )
-					   $location.path('/homme');
+					   $location.path('/login');
 					 
 					 }
 				     

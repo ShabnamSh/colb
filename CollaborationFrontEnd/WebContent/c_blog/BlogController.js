@@ -16,7 +16,8 @@ app.controller('BlogController', ['$scope', 'BlogService','$location','$rootScop
                   .then(
                                function(d) {
                                      //self.blog = d;
-                                     $location.path('/view_blog'); //mapping is there in the app.js .when
+                            	   console.log(d)
+                                     $location.path('/viewblog'); 
                                },
                                 function(errResponse){
                                     console.error('Error while fetching Blogs');
@@ -41,7 +42,9 @@ app.controller('BlogController', ['$scope', 'BlogService','$location','$rootScop
           self.createBlog = function(blog){
               BlogService.createBlog(blog)
                       .then(
-                      self.fetchAllBlogs, 
+                    		  function(data) {
+									self.blog = data;
+								}, 
                               function(errResponse){
                                    console.error('Error while creating Blog.');
                               } 
@@ -64,10 +67,10 @@ app.controller('BlogController', ['$scope', 'BlogService','$location','$rootScop
 						.accept(id)
 						.then(
 								function(d) {
-									self.job = d;
+									self.blog = d;
 									self.fetchAllBlogs
-									$location.path("/manage_jobs")
-									alert(self.job.errorMessage)
+									//$location.path("/manage_jobs")
+									alert(self.blog.errorMessage)
 									
 								},
 								
@@ -84,10 +87,10 @@ app.controller('BlogController', ['$scope', 'BlogService','$location','$rootScop
 						.reject(id,reason)
 						.then(
 								function(d) {
-									self.job = d;
+									self.blog = d;
 									self.fetchAllBlogs
-									$location.path("/manage_jobs")
-									alert(self.job.errorMessage)
+									//$location.path("/manage_jobs")
+									alert(self.blog.errorMessage)
 									
 								},
 								function(errResponse) {
@@ -99,7 +102,7 @@ app.controller('BlogController', ['$scope', 'BlogService','$location','$rootScop
  
                //calling the method
           //when it will be execute?
-          self.fetchAllBlogs();
+         // self.fetchAllBlogs();
  
           self.submit = function() {
            
@@ -107,7 +110,7 @@ app.controller('BlogController', ['$scope', 'BlogService','$location','$rootScop
                  // self.blog.userID=$rootScope.currentUser.id
                   self.createBlog(self.blog);
             
-              self.reset();
+              //self.reset();
           };
                
           self.edit = function(id){

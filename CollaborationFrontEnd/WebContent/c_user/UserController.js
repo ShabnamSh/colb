@@ -72,7 +72,7 @@ app
 										.then(
 												function(data) {
 													alert("Thank you for registration")
-													$location.path("/")
+													$location.path("/login")
 												},
 												function(errResponse) {
 													console
@@ -263,8 +263,8 @@ app
 							        console.log('set admin...');
 							        UserService.setAdmin(userid).then(function (d) {
 							            self.user = d;
-							            alert("successfully made admin");
-							            $route.reload();
+							           // alert("successfully made admin");
+							            //$route.reload();
 							        },
 							        function (errResponse) {
 							            console.error('error making admin in controller...');
@@ -276,7 +276,7 @@ app
 							        UserService.removeAdmin(userid).then(function (d) {
 							            self.user = d;
 							            alert("successfully removed admin");
-							            $route.reload();
+							           // $route.reload();
 							        },
 							        function (errResponse) {
 							            console.error('error removing admin in controller...');

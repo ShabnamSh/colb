@@ -106,14 +106,14 @@ public class UserController {
 	}
 	//Admin should able to make one of the employee as admin
 		@PutMapping("/makeAdmin/{userid}")
-		public ResponseEntity<User> makeAdmin(@PathVariable("userid") String empID) {
+		public ResponseEntity<User> makeAdmin(@PathVariable("userid") String userid) {
 
 			log.debug("calling the method makeAdmin");
-			log.debug("with the id :" + empID);
-			user = userDao.get(empID);
+			log.debug("with the id :" + userid);
+			user = userDao.get(userid);
 
 			if (user == null) {
-				log.debug("Employee does not exist with the id : " + empID);
+				log.debug("Employee does not exist with the id : " + userid);
 				user = new User();
 				user.setErrorcode("404");
 				user.setErrorMessage("Employee does not exist");
@@ -121,22 +121,21 @@ public class UserController {
 
 			}
 			
-			if(user.getRole()!="employee")
+			if(user.getRole()=="employee")
 			{
-				log.debug("We cannot make thhis user as admin: " + empID);
-				user = new User();
-				user.setErrorcode("404");
-				user.setErrorMessage("We cannot make thhis user as admin: " + empID);
-				return new ResponseEntity<User>(user, HttpStatus.OK); // 200
+				user.setRole("admin");
+				userDao.update(user);
+				user.setErrorcode("200");
+				user.setErrorMessage("Successfully assign Admin role to the employy :" +user.getName());
+				log.debug("Employee role updated as admin successfully " + userid);
+				
 				
 			}
 			
-			user.setRole("admin");
-			userDao.update(user);
-			user.setErrorcode("200");
-			user.setErrorMessage("Successfully assign Admin role to the employy :" +user.getName());
-			log.debug("Employee role updated as admin successfully " + empID);
-
+			log.debug("We cannot make thhis user as admin: " + userid);
+			user = new User();
+			user.setErrorcode("404");
+			user.setErrorMessage("We cannot make thhis user as admin: " + userid);
 			return new ResponseEntity<User>(user, HttpStatus.OK); // 200
 
 		}

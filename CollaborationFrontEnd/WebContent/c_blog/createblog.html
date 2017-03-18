@@ -11,7 +11,7 @@ form
 </style>
 </head>
 <body>
-<div>
+<div name="createblog">
 <div ng-show="currentUser==''">
 <div class="alert alert-danger fade in">
 <div>
@@ -34,18 +34,18 @@ if you are not register..Please register<a href="#/register">here</a>to create a
 										placeholder="Enter your tiltle" required ng-minlength="5" />
 								</div>
 							</div>
-						</div>
+					
 						<div class="form-group col-md-12">
 								<label class="col-md-2 control-lable">Description</label>  
 								<div class="col-md-7">
-									<textarea rows="100" cols="300" ng-model="ctrl.blog.description" id="description"
+									<textarea rows="50" cols="100" ng-model="ctrl.blog.description" id="description"
 											class="description form-control input-sm"
 										placeholder="Blog Description" required ng-minlength="50" ng-minlength="500">
 										</textarea>
 								</div>
 							</div>
-						</div>
-						<<div class="row">
+						
+						<div class="row">
 							<div class="form-actions floatRight">
 								<input type="submit" value="Create Blog"
 									class="btn btn-primary btn-sm">
@@ -53,9 +53,11 @@ if you are not register..Please register<a href="#/register">here</a>to create a
 									class="btn btn-warning btn-sm">Reset Blog</button>
 							</div>
 						</div>
+						</div>
 </form>
+
 </div>
 </div>
-</div>
+
 </body>
 </html>
