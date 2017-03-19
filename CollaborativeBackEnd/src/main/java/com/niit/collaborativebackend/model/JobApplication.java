@@ -1,12 +1,16 @@
 package com.niit.collaborativebackend.model;
 
-import java.sql.Date;
+
+
+import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 
 import org.springframework.stereotype.Component;
@@ -33,6 +37,7 @@ public class JobApplication extends BaseDomain {
 	private String reason;
 
 	@NotNull
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date applieddate;
 
 	public int getId() {

@@ -73,6 +73,10 @@ app.config(function($routeProvider){
 		templateUrl : 'c_blog/viewblog.html',
 		controller : 'BlogController'
 	})
+	.when('/sortblog', {
+		templateUrl : 'c_blog/sortblog.html',
+		controller : 'BlogController'
+	})
 	.when('/createblog', {
 		templateUrl : 'c_blog/createblog.html',
 		controller : 'BlogController'
@@ -94,7 +98,7 @@ app.run(function($rootScope,$location,$cookieStore,$http){
 		 //http://localhost:8080/Collaboration/addjob
 	        // redirect to login page if not logged in and trying to access a restricted page
 	     
-		 var userPages = ['/myProfile','/createblog','/updateuser','/searchFriend','/homme','/chat','/search','/chatp','/view_applied_job','/register'];
+		 var userPages = ['/myProfile','/createblog','/updateuser','/searchFriend','/homme','/chat','/search','/chatp','/view_applied_job','/register','/sortblog'];
 		 var adminPages = ['/post_job','/adminhome','/manageusers'];
 		 
 		 var currentPage = $location.path();

@@ -1,6 +1,6 @@
 'use strict';
  
-app.controller('BlogController', ['$scope', 'BlogService','$location','$rootScope',function($scope, BlogService,$location,$routeParams,$rootScope) {
+app.controller('BlogController', ['$scope', 'BlogService','$location','$rootScope','$route',function($scope, BlogService,$location,$routeParams,$rootScope,$route) {
 	console.log("BlogController...")
           var self = this;
           self.blog={id:'',title:'',userid:'',status:'',reason:'',description:'',datetime:'',errorCode : '',errorMessage : ''};
@@ -44,6 +44,7 @@ app.controller('BlogController', ['$scope', 'BlogService','$location','$rootScop
                       .then(
                     		  function(data) {
 									self.blog = data;
+									alert("Blog Created Successfully");
 								}, 
                               function(errResponse){
                                    console.error('Error while creating Blog.');
@@ -61,16 +62,17 @@ app.controller('BlogController', ['$scope', 'BlogService','$location','$rootScop
                   );
           };
           
-          self.accept = function(id) {
+          self.accept = function(id,reason) {
 				console.log("accept...")
-				JobService
-						.accept(id)
+				BlogService
+						.accept(id,reason)
 						.then(
 								function(d) {
 									self.blog = d;
 									self.fetchAllBlogs
 									//$location.path("/manage_jobs")
-									alert(self.blog.errorMessage)
+									alert(self.blog.errorMessage);
+									$route.reload();
 									
 								},
 								
@@ -80,10 +82,10 @@ app.controller('BlogController', ['$scope', 'BlogService','$location','$rootScop
 								});
 			};
 			
-			self.reject = function( id) {
+			self.reject = function( id,reason) {
 				console.log("reject...")
 				var reason = prompt("Please enter the reason");
-				JobService
+				BlogService
 						.reject(id,reason)
 						.then(
 								function(d) {
@@ -91,7 +93,7 @@ app.controller('BlogController', ['$scope', 'BlogService','$location','$rootScop
 									self.fetchAllBlogs
 									//$location.path("/manage_jobs")
 									alert(self.blog.errorMessage)
-									
+									$route.reload();
 								},
 								function(errResponse) {
 									console

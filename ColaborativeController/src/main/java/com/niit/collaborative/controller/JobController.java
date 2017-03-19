@@ -154,35 +154,35 @@ public class JobController {
 	
 	
 
-	@RequestMapping(value = "/selectUser/{userid}/{jobid}/{remarks}", method = RequestMethod.PUT)
+	@RequestMapping(value = "/selectUser/{userid}/{jobid}/{reason}", method = RequestMethod.PUT)
 	public ResponseEntity<JobApplication> selectUser(@PathVariable("userid") String userid,
-			@PathVariable("jobid") int jobid, @PathVariable("remarks") String remarks) {
+			@PathVariable("jobid") int jobid, @PathVariable("reason") String reason) {
 		logger.debug("Starting of the method selectUser");
-		jobApplication = updateJobApplicationStatus(userid, jobid, "S", remarks);
+		jobApplication = updateJobApplicationStatus(userid, jobid, "S", reason);
 
 		return new ResponseEntity<JobApplication>(jobApplication, HttpStatus.OK);
 	}
 
-	@RequestMapping(value = "/callForInterview/{userid}/{jobid}/{remarks", method = RequestMethod.PUT)
+	@RequestMapping(value = "/callForInterview/{userid}/{jobid}/{reason}", method = RequestMethod.PUT)
 	public ResponseEntity<JobApplication> callForInterview(@PathVariable("userid") String userid,
-			@PathVariable("jobid") int jobid, @PathVariable("remarks") String remarks) {
+			@PathVariable("jobid") int jobid, @PathVariable("reason") String reason) {
 		logger.debug("Starting of the method canCallForInterview");
 
-		jobApplication = updateJobApplicationStatus(userid, jobid, "C", remarks);
+		jobApplication = updateJobApplicationStatus(userid, jobid, "C", reason);
 
 		return new ResponseEntity<JobApplication>(jobApplication, HttpStatus.OK);
 	}
 
-	@RequestMapping(value = "/rejectJobApplication/{userid}/{jobid}/{remarks}", method = RequestMethod.PUT)
+	@RequestMapping(value = "/rejectJobApplication/{userid}/{jobid}/{reason}", method = RequestMethod.PUT)
 	public ResponseEntity<JobApplication> rejectJobApplication(@PathVariable("userid") String userid,
-			@PathVariable("jobid") int jobid, @PathVariable("remarks") String remarks) {
+			@PathVariable("jobid") int jobid, @PathVariable("reason") String reason) {
 		logger.debug("Starting of the method rejectJobApplication");
-		jobApplication = updateJobApplicationStatus(userid, jobid, "R", remarks);
+		jobApplication = updateJobApplicationStatus(userid, jobid, "R", reason);
 
 		return new ResponseEntity<JobApplication>(jobApplication, HttpStatus.OK);
 	}
 
-	private JobApplication updateJobApplicationStatus(String userid, int jobid, String status, String remarks) {
+	private JobApplication updateJobApplicationStatus(String userid, int jobid, String status, String reason) {
 		logger.debug("Starting of the method updateJobApplicationStatus");
 
 		if (isUserAppliedForTheJob(userid, jobid) == false) {
@@ -207,7 +207,7 @@ public class JobController {
 		jobApplication = jobDao.getJobApplication(userid, jobid);
 
 		jobApplication.setStatus("status");
-		jobApplication.setRemarks(remarks);
+		jobApplication.setReason(reason);
 		if (jobDao.updateJob(jobApplication)) {
 			jobApplication.setErrorcode("200");
 			jobApplication.setErrorMessage("Successfully updated the status as " + status);

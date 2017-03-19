@@ -112,31 +112,24 @@ public class UserController {
 			log.debug("with the id :" + userid);
 			user = userDao.get(userid);
 
-			if (user == null) {
-				log.debug("Employee does not exist with the id : " + userid);
-				user = new User();
-				user.setErrorcode("404");
-				user.setErrorMessage("Employee does not exist");
-				return new ResponseEntity<User>(user, HttpStatus.OK); // 200
-
+			if(user!=null){
+				if(user.getRole().equals("employee")){
+					user.setRole("admin");
+					user.setErrorcode("200");
+					user.setErrorMessage("successfully made admin");
+					userDao.update(user);
+				}
+				else{
+					user.setErrorcode("404");
+					user.setErrorMessage("Not eligible for admin");
+				}
+			}
+			else {
+				user.setErrorcode("301");
+				user.setErrorMessage("User not found ...");
 			}
 			
-			if(user.getRole()=="employee")
-			{
-				user.setRole("admin");
-				userDao.update(user);
-				user.setErrorcode("200");
-				user.setErrorMessage("Successfully assign Admin role to the employy :" +user.getName());
-				log.debug("Employee role updated as admin successfully " + userid);
-				
-				
-			}
-			
-			log.debug("We cannot make thhis user as admin: " + userid);
-			user = new User();
-			user.setErrorcode("404");
-			user.setErrorMessage("We cannot make thhis user as admin: " + userid);
-			return new ResponseEntity<User>(user, HttpStatus.OK); // 200
+			return new ResponseEntity<User>(user,HttpStatus.OK);
 
 		}
 		@PutMapping("/removeAdmin/{userid}")

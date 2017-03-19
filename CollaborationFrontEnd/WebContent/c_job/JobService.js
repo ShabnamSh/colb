@@ -8,8 +8,8 @@ app.service('JobService', ['$http', '$q','$rootScope', function($http, $q,$rootS
 		
     return {
          
-		applyForJob: function(jobID) {
-                    return $http.post(BASE_URL+"/applyForJob/"+jobID)
+		applyForJob: function(jobid) {
+                    return $http.post(BASE_URL+"/applyForJob/"+jobid)
                             .then(
                                     function(response){
                                         return response.data;
@@ -21,9 +21,9 @@ app.service('JobService', ['$http', '$q','$rootScope', function($http, $q,$rootS
                             );
             },
             
-            getJobDetails: function(jobID) {
-            	console.log("Getting job details of " + jobID)
-                return $http.get(BASE_URL+"/getJobDetails/" + jobID)
+            getJobDetails: function(jobid) {
+            	console.log("Getting job details of " + jobid)
+                return $http.get(BASE_URL+"/getJobDetails/" + jobid)
                         .then(
                                 function(response){
                                 	$rootScope.selectedJob = response.data
@@ -62,8 +62,8 @@ app.service('JobService', ['$http', '$q','$rootScope', function($http, $q,$rootS
                         );
         },
              
-            rejectJobApplication: function(userID, jobID){
-                    return $http.put(BASE_URL+'/rejectJobApplication/'+userID+ "/" + jobID)
+            rejectJobApplication: function(userid,jobid,reason){
+                    return $http.put(BASE_URL+'/rejectJobApplication/'+userid+ "/" + jobid+"/"+reason)
                             .then(
                                     function(response){
                                         return response.data;
@@ -75,8 +75,8 @@ app.service('JobService', ['$http', '$q','$rootScope', function($http, $q,$rootS
                             );
             },
              
-            callForInterview: function(userID, jobID){
-            	  return $http.put(BASE_URL+'/callForInterview/'+userID+"/"+ jobID)
+            callForInterview: function(userid,jobid,reason){
+            	  return $http.put(BASE_URL+'/callForInterview/'+userid+ "/" + jobid+"/"+reason)
                             .then(
                                     function(response){
                                         return response.data;
@@ -87,8 +87,8 @@ app.service('JobService', ['$http', '$q','$rootScope', function($http, $q,$rootS
                                     }
                             );
             },
-            selectUser: function(userID,jobID){
-            	  return $http.put(BASE_URL+'/selectUser/'+userID +"/"+ jobID)
+            selectUser: function(userid,jobid,reason){
+            	  return $http.put(BASE_URL+'/selectUser/'+userid+ "/" + jobid+"/"+reason)
                             .then(
                                 function(response){
                                     return response.data;
