@@ -4,6 +4,9 @@ app.config(function($routeProvider){
 	.when('/',{
 		templateUrl:'c_home/home.html'
 	})
+	.when('/rest',{
+		templateUrl:'c_event/event.html'
+	})
 	.when('/myProfile',{
 		templateUrl:'c_user/myProfile.html',
 		controller : 'UserController'
@@ -61,7 +64,11 @@ app.config(function($routeProvider){
 		templateUrl : 'c_job/view_applied_job.html',
 		controller : 'JobController'
 	})
-	.when('/view_job_deatils', {
+	.when('/sortjob', {
+		templateUrl : 'c_job/sortjob.html',
+		controller : 'JobController'
+	})
+	.when('/view_job_details', {
 		templateUrl : 'c_job/view_job_details.html',
 		controller : 'JobController'
 	})
@@ -98,8 +105,8 @@ app.run(function($rootScope,$location,$cookieStore,$http){
 		 //http://localhost:8080/Collaboration/addjob
 	        // redirect to login page if not logged in and trying to access a restricted page
 	     
-		 var userPages = ['/myProfile','/createblog','/updateuser','/searchFriend','/homme','/chat','/search','/chatp','/view_applied_job','/register','/sortblog'];
-		 var adminPages = ['/post_job','/adminhome','/manageusers'];
+		 var userPages = ['/myProfile','/createblog','/updateuser','/searchFriend','/homme','/chat','/search','/chatp','/view_applied_job','/register','/sortblog','/view_job_details'];
+		 var adminPages = ['/post_job','/adminhome','/manageusers','/rest','/sortjob'];
 		 
 		 var currentPage = $location.path();
 		 

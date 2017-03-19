@@ -38,13 +38,14 @@ app.service('JobService', ['$http', '$q','$rootScope', function($http, $q,$rootS
         
              
             getMyAppliedJobs: function(){
+            	console.log("Entering into service of getMyAppliedJobs")
                     return $http.get(BASE_URL+'/getMyAppliedJobs/')
                             .then(
                                     function(response){
                                         return response.data;
                                     }, 
                                     function(errResponse){
-                                        console.error('Error while getting applyied jobs');
+                                        console.error('Error while getting appllied jobs');
                                         return $q.reject(errResponse);
                                     }
                             );
@@ -98,8 +99,24 @@ app.service('JobService', ['$http', '$q','$rootScope', function($http, $q,$rootS
                                     return $q.reject(errResponse);
                                 }
                         );
-        }
-        ,
+        },
+        getAllAppliedJobs: function () {
+            return $http
+                    .get(
+                            BASE_URL
+                                    + '/getAllAppliedJobs/')
+                    .then(
+                            function (response) {
+                                return response.data;
+                            },
+                            function (errResponse) {
+                                console
+                                        .error('Error while getting all jobs');
+                                return $q
+                                        .reject(errResponse);
+                            });
+        },
+       
         getAllJobs: function(){
             return $http.get(BASE_URL+'/getAllJobs/')
                     .then(

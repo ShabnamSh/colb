@@ -1,7 +1,7 @@
 'use strict';
 
-app	.controller('JobController',['JobService','$location', '$rootScope','$scope','$route',
-						function(JobService, $location, $rootScope,$scope,$route) {
+app	.controller('JobController',['JobService','$location', '$rootScope','$scope','$route','$cookieStore',
+						function(JobService, $location, $rootScope,$scope,$route,$cookieStore) {
 							console.log("JobController...")
 							var self = this;
 
@@ -68,7 +68,7 @@ app	.controller('JobController',['JobService','$location', '$rootScope','$scope'
 								JobService.getMyAppliedJobs()
 								.then(
 									function(d) {
-								    	self.jobapplication = d;
+								    	self.jobapplications = d;
 									/* $location.path('/view_friend'); */
 								    }, 
 								    
@@ -79,7 +79,7 @@ app	.controller('JobController',['JobService','$location', '$rootScope','$scope'
 
 							self.rejectJobApplication = function(userid,jobid,reason) {
 						   // var jobID =$rootScope.selectedJob.id;
-								JobService.rejectJobApplication(userid,jobid,reason												)
+								JobService.rejectJobApplication(userid,jobid,reason	)
 										.then(
 												function(d) {
 													self.job = d;
@@ -174,10 +174,11 @@ app	.controller('JobController',['JobService','$location', '$rootScope','$scope'
 
 							self.getJobDetails = getJobDetails
 
-							function getJobDetails(id) {
-								console.log('get Job details of the id', id);
+							function getJobDetails(jobid) {
+								console.log('get Job details of the id', jobid);
+								 $cookieStore.put('jobdetailID',jobid); 
 								JobService
-										.getJobDetails(id)
+										.getJobDetails(jobid)
 										.then(
 												function(d) {
 													self.job = d;

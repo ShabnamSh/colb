@@ -5,7 +5,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-<div name="viewblog">
+<br>
+<br>
+<div name="viewblog" style="width:800px; margin:0 auto;">
 <div class="container" ng-controller="BlogController as ctrl">
 
 	<div class="form-group">
@@ -19,8 +21,11 @@
 
 </div>
 </div>
-<a href="#/homme">
-   <input type="button" value="Visit Google" />
+<a href="#/adminhome" ng-show="currentUser.role==admin">
+   <input type="button" value="home" />
+</a>
+<a href="#/homme" ng-show="currentUser.role!=admin">
+   <input type="button" value="home" />
 </a>
 </body>
 </html>

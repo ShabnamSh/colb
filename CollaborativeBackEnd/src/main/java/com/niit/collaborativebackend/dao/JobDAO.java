@@ -15,5 +15,6 @@ public interface JobDAO {
 	public boolean save(JobApplication jobApplication);
 	public boolean save(Job job);
 	public List<Job> getMyAppliedJobs(String userid);
+	public List<JobApplication> getAllAppliedJobs();
 
 }

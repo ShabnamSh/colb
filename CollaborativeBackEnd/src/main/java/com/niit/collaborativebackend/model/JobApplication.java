@@ -33,12 +33,8 @@ public class JobApplication extends BaseDomain {
 	@NotNull
 	private String status;
 	private String remarks;
-	@NotNull
 	private String reason;
-
-	@NotNull
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date applieddate;
+    private Date applieddate;
 
 	public int getId() {
 		return id;

@@ -30,6 +30,12 @@ public class Job extends BaseDomain {
 	private String qualification;
 	private String status;
 	
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
 	public String getTitle() {
 		return title;
 	}

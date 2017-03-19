@@ -31,6 +31,10 @@ public JobDAOImpl(){
 		log.debug("Starting of method getAllOpendJobs");
 		return query.list();
 	}
+	public List<JobApplication> getAllAppliedJobs() {
+		// TODO Auto-generated method stub
+		return sessionFactory.getCurrentSession().createQuery("from JobApplication").list();
+	}
 
 	public Job getJobDetails(int id) {
 		// TODO Auto-generated method stub

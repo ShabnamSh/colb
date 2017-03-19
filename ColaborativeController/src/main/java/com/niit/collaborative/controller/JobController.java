@@ -1,6 +1,8 @@
 package com.niit.collaborative.controller;
 
 import java.sql.Date;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,6 +13,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -43,7 +46,12 @@ public class JobController {
 		List<Job> jobs = jobDao.getAllOpendJobs();
 		return new ResponseEntity<List<Job>>(jobs, HttpStatus.OK);
 	}
-
+	@GetMapping("/getAllAppliedJobs/") // $http.get(base_url+"/getAllJobs/)
+	public ResponseEntity<List<JobApplication>> getAllAppliedJobs() {
+		logger.debug("Starting of the method getAllAppliedJobs");
+		List<JobApplication> jobs = jobDao.getAllAppliedJobs();
+		return new ResponseEntity<List<JobApplication>>(jobs, HttpStatus.OK);
+	}
 	@RequestMapping(value = "/getMyAppliedJobs/", method = RequestMethod.GET)
 
 	public ResponseEntity<List<Job>> getMyAppliedJobs() {
@@ -67,6 +75,7 @@ public class JobController {
 
 	public ResponseEntity<Job> getJobDetails(@PathVariable("jobid") int jobid) {
 		logger.debug("Starting of the method getJobDetails");
+		
 		Job job = jobDao.getJobDetails(jobid);
 
 		if (job == null) {
@@ -125,8 +134,8 @@ public class JobController {
 			if (isUserAppliedForTheJob(loggedInUserID, jobid) == false) {
 				jobApplication.setJobid(jobid);;
 				jobApplication.setUserid(loggedInUserID);
-				jobApplication.setStatus("N"); // N-Newly Applied; C->Call For
-												// Interview, S->Selected
+				jobApplication.setStatus("N"); // N-Newly Applied; C->Call For// Interview, S->Selected
+				
 				jobApplication.setApplieddate(new Date(System.currentTimeMillis()));
 
 				logger.debug("Applied Date : " + jobApplication.getApplieddate());
